@@ -1,4 +1,6 @@
 class Group < ApplicationRecord
+
   has_many :posts
-  validates :name
+  validates :name, presence: true
+
 end
