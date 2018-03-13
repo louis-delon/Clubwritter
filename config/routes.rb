@@ -1,4 +1,29 @@
 Rails.application.routes.draw do
+
+  get 'groups/new'
+
+  get 'groups/create'
+
+  get 'groups/edit'
+
+  get 'groups/update'
+
+  get 'themes/new'
+
+  get 'themes/create'
+
+  get 'posts/index'
+
+  get 'posts/new'
+
+  get 'posts/create'
+
+  get 'posts/show'
+
+  get 'posts/edit'
+
+  get 'posts/update'
+
   devise_for :users
   root to: 'pages#home'
 
