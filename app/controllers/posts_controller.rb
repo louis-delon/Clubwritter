@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
 
-  before_action :post_params, only: [:show, :edit, :update]
+  before_action :set_post, only: [:show, :edit, :update]
 
   def index
-     @posts = Post.all
+    @posts = Post.all
   end
 
   def new
@@ -25,6 +25,11 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
 
   def post_params
     params.require(:post)
