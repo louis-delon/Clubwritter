@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @theme = Theme.find(params[:theme_id])
+    @number_of_days = number_of_days_for_apply(@theme.deadline)
   end
 
   def new
@@ -26,6 +27,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def number_of_days_for_apply(deadline)
+    deadline.mjd-DateTime.now.mjd
+  end
 
   def set_post
     @post = Post.find(params[:id])

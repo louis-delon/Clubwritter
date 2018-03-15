@@ -53,10 +53,16 @@ category4 = Category.create!(
 
 puts "creating themes"
 theme1 = Theme.create!(
-    name: 'Qu\'est ce que le bonheur',
+    name: 'Qu\'est ce que le bonheur?',
     user_id: louis.id,
     category_id: category1.id,
     deadline: "30/03/2018"
+  )
+theme2 = Theme.create!(
+    name: 'l\'amour est il prévisible?',
+    user_id: olivier.id,
+    category_id: category1.id,
+    deadline: "10/03/2018"
   )
 20.times do
   Theme.create!(
@@ -73,7 +79,7 @@ puts "creating inscriptions"
 inscription1 = Inscription.create!(
     comment: 'bonjour je suis tres inspiré',
     user_id: louis.id,
-    theme_id: theme1.id,
+    theme_id: theme2.id,
     accepted: false
   )
 inscription2 = Inscription.create!(
@@ -102,6 +108,15 @@ post1 = Post.create!(
     theme_id: theme1.id,
     category_id: category1.id
   )
+post2 = Post.create!(
+    content: 'l\'amour est un incroyable sentiment que je ne saurais décrire en quelques mots, il me faudrait des nuites entieres pour ecpliquer ce que je ressens lorsque je suis amoureux',
+    private: false,
+    online: true,
+    user_id: louis.id,
+    theme_id: theme2.id,
+    category_id: category1.id
+  )
+
 60.times do
   Post.create!(
     content: Faker::Lovecraft.paragraphs,
@@ -112,3 +127,5 @@ post1 = Post.create!(
     category_id: ((Category.first.id)..(Category.last.id)).to_a.sample
   )
 end
+
+puts "successful CONGRATULATIONS !!!!"
