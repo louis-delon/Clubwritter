@@ -37,7 +37,7 @@
 <type label="SET" length="1" sql="SET" quote=""/>
 <type label="Bit" length="0" sql="bit" quote=""/>
 </group>
-</datatypes><table x="435" y="60" name="users">
+</datatypes><table x="435" y="14" name="users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -51,7 +51,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1081" y="279" name="Categories">
+<table x="1047" y="108" name="Categories">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -62,7 +62,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="854" y="36" name="Posts">
+<table x="850" y="14" name="Posts">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -76,6 +76,7 @@
 <row name="theme_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="Themes" row="id" />
+<relation table="Themes" row="id" />
 </row>
 <row name="category_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -92,7 +93,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="630" y="293" name="Groups">
+<table x="624" y="216" name="Groups">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -106,7 +107,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="618" y="145" name="Themes">
+<table x="620" y="105" name="Themes">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -121,7 +122,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1210" y="24" name="comments">
+<table x="1167" y="438" name="comments">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -135,7 +136,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1211" y="151" name="votes">
+<table x="1170" y="337" name="votes">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -146,23 +147,52 @@
 <part>id</part>
 </key>
 </table>
-<table x="341" y="460" name="Users">
+<table x="74" y="354" name="Users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="pseudo" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
+<row name="email" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="574" y="509" name="Groups">
+<table x="422" y="433" name="Inscriptions">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Users" row="id" />
+</row>
+<row name="accepted" null="1" autoincrement="0">
+<datatype>BINARY</datatype>
+<default>NULL</default></row>
+<row name="theme_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Themes" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="633" y="684" name="Themes">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="name" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="category_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Categories" row="id" />
+</row>
+<row name="deadline" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
 <default>NULL</default></row>
 <row name="user_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -172,25 +202,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="812" y="528" name="Themes">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="group_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="Groups" row="id" />
-</row>
-<row name="name" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<row name="private" null="1" autoincrement="0">
-<datatype>BINARY</datatype>
-<default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="1041" y="532" name="Posts">
+<table x="809" y="312" name="Posts">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -200,28 +212,32 @@
 <row name="created_at" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
+<row name="category_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Categories" row="id" />
+</row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Users" row="id" />
+</row>
 <row name="theme_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="Themes" row="id" />
 </row>
-<row name="new field" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<row name="Private" null="1" autoincrement="0">
+<datatype>BINARY</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="1235" y="593" name="Categories">
+<table x="1237" y="645" name="Categories">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="name" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
-<row name="post_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="Posts" row="id" />
-</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>

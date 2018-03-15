@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :posts, dependent: :destroy
+  has_many :inscriptions, dependent: :destroy
   has_many :themes, dependent: :destroy
   validates :pseudo, presence: true, uniqueness: true
 

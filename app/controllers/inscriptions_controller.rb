@@ -1,4 +1,4 @@
-class GroupsController < ApplicationController
+class InscriptionsController < ApplicationController
   def new
   end
 
