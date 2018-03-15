@@ -1,16 +1,11 @@
 <div class="container">
-  <div class="row">
-    <h1>Thèmes proposés</h1>
-
-    <br>
-    <br>
-
-    <% @posts.each do |post| %>
-      <h2>
-        <%= link_to "#{post.theme.name}", post_path(post) %>
-      </h2>
+  <h1><%= "Thème proposé: #{@theme.name}" %></h1>
+  <br>
+  <br>
+  <% @posts.each do |post| %>
+    <div class="row">
+      <h2><%= "#{post.content}"%></h2>
       <p><%= post.user.pseudo %></p>
-    <% end %>
-
-  </div>
+    </div>
+  <% end %>
 </div>

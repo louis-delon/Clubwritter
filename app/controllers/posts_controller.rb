@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @theme = Theme.find(params[:theme_id])
   end
 
   def new
