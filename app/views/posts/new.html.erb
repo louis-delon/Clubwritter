@@ -1,2 +1,11 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<div class="container">
+
+  <h1>Commencez à écrire !</h1>
+  <p>
+    <%= simple_form_for [@theme, @post] do |f| %>
+      <%= f.input :content, as: :text %>
+      <%= f.input :private, as: :boolean, inline_label: 'Je souhaite que ce contenu reste privé' %>
+      <%= f.button :submit %>
+    <% end %>
+  </p>
+</div>

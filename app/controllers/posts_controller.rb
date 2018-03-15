@@ -9,11 +9,25 @@ class PostsController < ApplicationController
   end
 
   def new
+    @theme = Theme.find(params[:theme_id])
     @post = Post.new
   end
 
   def create
-    @post = Post.new(post_params)
+    @theme = Theme.find(params[:theme_id])
+    # @post = Post.new(post_params)
+    @post = Post.new(
+      theme_id: @theme.id,
+      user_id: current_user.id,
+      category_id: @theme.category_id,
+      content: params[:post][:content]
+      )
+    if @post.save
+      raise
+      redirect_to theme_posts_path(@theme)
+    else
+      render :new
+    end
   end
 
   def show
@@ -44,7 +58,7 @@ class PostsController < ApplicationController
         :user_id,
         :theme_id,
         :category_id,
-        :group_id
+        :private,
       )
   end
 
