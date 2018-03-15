@@ -11,19 +11,19 @@ User.destroy_all
 Theme.destroy_all
 Inscription.destroy_all
 Post.destroy_all
-Group.destroy_all
+# Group.destroy_all
 
 puts "creating users"
 louis = User.create!(
     email: 'louis@holdies.com',
     pseudo: 'loulou',
     password: 'aaaaaa'
+  )
 
 olivier = User.create!(
     email: 'louleman34@gmail.com',
     pseudo: 'louleman34',
     password: 'aaaaaa'
-
   )
 5.times do
   User.create!(
@@ -85,7 +85,7 @@ inscription2 = Inscription.create!(
 50.times do
   Inscription.create!(
     comment: Faker::Dune.saying,
-    user_id: ((User.first.id)..(User.last.id)).to_a.sample,,
+    user_id: ((User.first.id)..(User.last.id)).to_a.sample,
     theme_id:((Theme.first.id)..(Theme.last.id)).to_a.sample,
     accepted: nil
   )
