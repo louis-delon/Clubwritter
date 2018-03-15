@@ -16,8 +16,14 @@ Group.destroy_all
 puts "creating users"
 louis = User.create!(
     email: 'louis@holdies.com',
+    pseudo: 'loulou',
+    password: 'aaaaaa'
+
+olivier = User.create!(
+    email: 'louleman34@gmail.com',
     pseudo: 'louleman34',
     password: 'aaaaaa'
+
   )
 5.times do
   User.create!(
@@ -31,77 +37,78 @@ end
 
 puts "creating categories"
 category1 = Category.create!(
-    name: 'Philosophy',
+    name: 'Philosophy'
   )
 category2 = Category.create!(
-    name: 'Litterature',
+    name: 'Litterature'
   )
 category3 = Category.create!(
-    name: 'Mathematics',
+    name: 'Mathematics'
   )
-
+category4 = Category.create!(
+    name: 'Religion'
+  )
 
 
 
 puts "creating themes"
 theme1 = Theme.create!(
     name: 'Qu\'est ce que le bonheur',
-    user_id: louis.id
+    user_id: louis.id,
+    category_id: category1.id,
+    deadline: "30/03/2018"
   )
 20.times do
   Theme.create!(
     name: Faker::Dune.quote,
-    user_id: ((User.first.id)..(User.last.id)).to_a.sample
+    user_id: ((User.first.id)..(User.last.id)).to_a.sample,
+    category_id: ((Category.first.id)..(Category.last.id)).to_a.sample,
+    deadline: Faker::Date.forward(30)
   )
 end
-
 
 
 
 puts "creating inscriptions"
 inscription1 = Inscription.create!(
     comment: 'bonjour je suis tres inspiré',
-    user_id: ,
-    theme_id:
-
+    user_id: louis.id,
+    theme_id: theme1.id,
+    accepted: false
   )
 inscription2 = Inscription.create!(
     comment: 'bonjour j\'aimerais participer',
-    user_id: ,
-    theme_id:
+    user_id: olivier.id,
+    theme_id: theme1.id,
+    accepted: true
   )
-5.times do
+50.times do
   Inscription.create!(
     comment: Faker::Dune.saying,
-    user_id: ,
-    theme_id:
+    user_id: ((User.first.id)..(User.last.id)).to_a.sample,,
+    theme_id:((Theme.first.id)..(Theme.last.id)).to_a.sample,
+    accepted: nil
   )
 end
-5.times do
-  Inscription.create!(
-    comment: Faker::Dune.saying,
-    user_id: ,
-    theme_id:
-  )
-end
-
 
 
 
 puts "creating posts"
 post1 = Post.create!(
     content: 'je pense que le bonheur est un choix et non un état',
+    private: false,
+    online: false,
     user_id: louis.id,
     theme_id: theme1.id,
-    inscription_id: inscription1.id,
     category_id: category1.id
   )
-80.times do
+60.times do
   Post.create!(
     content: Faker::Lovecraft.paragraphs,
+    private: false,
+    online: false,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
     theme_id: ((Theme.first.id)..(Theme.last.id)).to_a.sample,
-    inscription_id: ((Inscription.first.id)..(Inscription.last.id)).to_a.sample,
     category_id: ((Category.first.id)..(Category.last.id)).to_a.sample
   )
 end
