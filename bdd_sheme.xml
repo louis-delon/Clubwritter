@@ -161,7 +161,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="422" y="433" name="Inscriptions">
+<table x="492" y="464" name="Inscriptions">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -176,11 +176,14 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="Themes" row="id" />
 </row>
+<row name="comment" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="633" y="684" name="Themes">
+<table x="684" y="662" name="Themes">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -202,7 +205,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="809" y="312" name="Posts">
+<table x="856" y="334" name="Posts">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -225,6 +228,9 @@
 <default>NULL</default><relation table="Themes" row="id" />
 </row>
 <row name="Private" null="1" autoincrement="0">
+<datatype>BINARY</datatype>
+<default>NULL</default></row>
+<row name="online" null="1" autoincrement="0">
 <datatype>BINARY</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
