@@ -1,21 +1,18 @@
 class PostsController < ApplicationController
 
   before_action :set_post, only: [:show, :edit, :update]
+  before_action :set_theme, only: [:index, :new, :create]
 
   def index
     @posts = Post.all
-    @theme = Theme.find(params[:theme_id])
     @number_of_days = number_of_days_for_apply(@theme.deadline)
   end
 
   def new
-    @theme = Theme.find(params[:theme_id])
     @post = Post.new
   end
 
   def create
-    @theme = Theme.find(params[:theme_id])
-    # @post = Post.new(post_params)
     @post = Post.new(
       theme_id: @theme.id,
       user_id: current_user.id,
@@ -23,7 +20,6 @@ class PostsController < ApplicationController
       content: params[:post][:content]
       )
     if @post.save
-      raise
       redirect_to theme_posts_path(@theme)
     else
       render :new
@@ -43,7 +39,12 @@ class PostsController < ApplicationController
   private
 
   def number_of_days_for_apply(deadline)
+    #calculate the number of day before the end of the inscription period
     deadline.mjd-DateTime.now.mjd
+  end
+
+  def set_theme
+    @theme = Theme.find(params[:theme_id])
   end
 
   def set_post
