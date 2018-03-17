@@ -3,8 +3,8 @@
   <h2><%= "Thème proposé par #{@theme.user.pseudo}"%></h2>
   <br>
   <br>
-  <% if @theme.deadline.past? %>
   <!-- j'affiche tous les posts du theme si la deadline est passée -->
+  <% if @theme.deadline.past? %>
     <%= "Theme terminé depuis le #{@theme.deadline}" %>
     <div class="row">
       <h3><%= @all_posts.reduce.content %></h3>
@@ -13,8 +13,8 @@
 
   <% else %>
 
+    <!-- j'affiche le post du user s'il a commencé à rédiger un post mais que la deadline n'est pas passée -->
     <% if Post.exists?(theme_id: @theme.id, user_id: current_user.id) %>
-    <!-- j'affiche le post du user s'il a commencé à rédiger mais que la deadline n'est pas passée -->
       <div class="row">
         <h3><%= @current_user_post.reduce.content %></h3>
         <p><%= @current_user_post.reduce.user.pseudo %></p>
@@ -23,7 +23,7 @@
       <%= link_to "Poursuivre votre article", edit_theme_post_path([@theme, @current_user_post]), class: "btn btn-primary" %>
     <% else %>
      <p><%= "Il vous reste #{@number_of_days} jours pour proposer un texte sur ce theme" %></p>
-     <%= link_to "Ecrire un article", new_theme_post_path, class: "btn btn-primary" %>
+     <%= link_to "Ecrire un article", new_theme_post_path([@theme, @post]), class: "btn btn-primary" %>
     <% end %>
   <% end %>
 </div>

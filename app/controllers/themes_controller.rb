@@ -16,12 +16,14 @@ class ThemesController < ApplicationController
 
   def show
     @all_posts = Post.where(theme_id: @theme.id)
-    @current_user_post = Post.where(theme_id: @theme.id, user_id: current_user.id)
+    @current_user_post = user_has_a_post(current_user)
     #calculate the number of day before the end of the inscription period
     @number_of_days = number_of_days_for_apply(@theme.deadline)
+    @post = Post.new
+    @post.theme_id = @theme.id
+    @post.user_id = current_user.id
     authorize @theme
     # binding.pry
-    # @post = Post.where("user_id = ?, current_user.id")
   end
 
   private
@@ -37,6 +39,10 @@ def number_of_days_for_apply(deadline)
 
   def theme_params
     params.require(:theme).permit(:name, :deadline, :category_id, :user_id)
+  end
+
+  def user_has_a_post(user)
+    Post.where(theme_id: @theme.id, user_id: user.id)
   end
 
 end

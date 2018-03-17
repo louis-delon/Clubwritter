@@ -1,15 +1,16 @@
 class PostsController < ApplicationController
 
-  before_action :set_post, only: [:show, :edit, :update]
-  before_action :set_theme, only: [:index, :new, :create, :show]
+  before_action :set_post, only: [:show]
+  before_action :set_theme, only: [:index, :new, :create, :show, :edit, :update]
+  before_action :set_current_user_post, only: [:edit]
 
   def index
   end
 
   def new
     @post = Post.new
+    @post.theme_id = @theme.id
     authorize @post
-
   end
 
   def create
@@ -27,14 +28,15 @@ class PostsController < ApplicationController
   end
 
   def show
-
   end
 
   def edit
+    authorize @post
   end
 
   def update
     @post.update(post_params)
+    authorize @post
   end
 
   private
@@ -45,6 +47,10 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def set_current_user_post
+    @post = Post.where(theme_id: @theme.id, user_id: current_user.id)
   end
 
   def post_params
