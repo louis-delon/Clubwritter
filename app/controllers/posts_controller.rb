@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   before_action :set_current_user_post, only: [:edit]
 
   def index
+    @posts = policy_scope(Post)
   end
 
   def new
@@ -20,8 +21,9 @@ class PostsController < ApplicationController
       category_id: @theme.category_id,
       content: params[:post][:content]
       )
+    authorize @post
     if @post.save
-      redirect_to theme_posts_path(@theme)
+      redirect_to theme_path(@theme)
     else
       render :new
     end
