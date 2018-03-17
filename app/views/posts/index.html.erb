@@ -1,22 +1,4 @@
-<div class="container">
-  <h1><%= "#{@theme.name}" %></h1>
-  <h2><%= "Thème proposé par #{@theme.user.pseudo}"%></h2>
-  <br>
-  <br>
-  <% if @theme.deadline.past? %>
-    <% @posts.each do |post| %>
-      <div class="row">
-        <h3><%= "#{post.content}"%></h3>
-        <p><%= post.user.pseudo %></p>
-      </div>
-    <% end %>
-  <% else %>
-   <p><%= "Il vous reste #{@number_of_days} jours pour proposer votre texte" %></p>
-  <% end %>
-  <div >
-  <%= link_to "Write a post", new_theme_post_path, class: "btn btn-primary" %>
-  </div>
-</div>
+
 
 
 

@@ -1,15 +1,15 @@
 class PostsController < ApplicationController
 
   before_action :set_post, only: [:show, :edit, :update]
-  before_action :set_theme, only: [:index, :new, :create]
+  before_action :set_theme, only: [:index, :new, :create, :show]
 
   def index
-    @posts = Post.all
-    @number_of_days = number_of_days_for_apply(@theme.deadline)
   end
 
   def new
     @post = Post.new
+    authorize @post
+
   end
 
   def create
@@ -27,6 +27,7 @@ class PostsController < ApplicationController
   end
 
   def show
+
   end
 
   def edit
@@ -38,11 +39,6 @@ class PostsController < ApplicationController
 
   private
 
-  def number_of_days_for_apply(deadline)
-    #calculate the number of day before the end of the inscription period
-    deadline.mjd-DateTime.now.mjd
-  end
-
   def set_theme
     @theme = Theme.find(params[:theme_id])
   end
@@ -50,7 +46,6 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
   end
-
 
   def post_params
     params.require(:post)
