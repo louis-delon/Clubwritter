@@ -17,6 +17,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'pundit'
+gem 'font-awesome-rails', '~> 4.6', '>= 4.6.3.1'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

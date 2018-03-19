@@ -1,10 +1,22 @@
 <div class="container">
   <h1><%= "#{@theme.name}" %></h1>
+
+  <% if policy(@theme).update? %>
+    <%= link_to(edit_theme_path(@theme), class: "btn btn--secondary") do %>
+    <%= fa_icon "edit" %>Edit
+    <% end %>
+  <% end %>
+  <% if policy(@theme).destroy?%>
+    <%= link_to(theme_path(@theme), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
+      <%= fa_icon "remove" %>Delete
+    <% end %>
+  <% end %>
+
   <h2><%= "Thème proposé par #{@theme.user.pseudo}"%></h2>
   <br>
   <br>
   <!-- user can see all the posts for other users if deadline is past -->
-  <% if @theme.deadline.past? %>
+  <% if @theme.deadline.past? && policy(@theme).show? %>
     <%= "Theme terminé depuis le #{@theme.deadline}" %>
     <div class="row">
       <% @all_posts.reduce do |post| %>
@@ -29,10 +41,7 @@
      <%= link_to "Ecrire un article", new_theme_post_path([@theme, @post]), class: "btn btn-primary" %>
     <% end %>
   <% end %>
-
-  <% if policy(@theme).update? %>
-    <%= link_to "mettre à jour", class: btn btn primary,  %>
-  <% end %>
-
-
 </div>
+
+
+

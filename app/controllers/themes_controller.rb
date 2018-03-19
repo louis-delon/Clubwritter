@@ -35,15 +35,19 @@ class ThemesController < ApplicationController
   end
 
   def edit
+    @categories = Category.all.sort_by { |category| category.name}
+    authorize @theme
   end
 
   def update
     @theme.update(theme_params)
+    authorize @theme
     redirect_to theme_path(@theme), notice: "votre texte a été modifé avec succès"
   end
 
   def destroy
     @theme.destroy
+    authorize @theme
     redirect_to themes_path
   end
 
