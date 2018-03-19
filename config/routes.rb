@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
+  get 'categories/index'
+
   devise_for :users
   root to: 'pages#home'
 
   resources :users, only: [:show, :edit, :update, :index]
-  resources :themes, only: [:new, :create, :index, :show] do
+  resources :themes do
     resources :posts, only: [:index, :new, :create, :update, :show, :edit]
     resources :inscriptions, only: [:new, :create, :index, :show, :destroy]
   end

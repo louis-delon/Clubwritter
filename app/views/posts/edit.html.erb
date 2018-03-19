@@ -1,2 +1,21 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<h1>Rédieger mon article</h1>
+
+<div class="container">
+
+  <h1>Commencez à écrire !</h1>
+  <p>
+    <%= simple_form_for [@theme, @post] do |f| %>
+      <%= f.error_notification %>
+
+      <div>
+        <%= f.input :content, as: :text %>
+      </div>
+      <div>
+        <%= f.input :private, as: :boolean, inline_label: 'Je souhaite que ce contenu reste privé' %>
+      </div>
+      <div>
+        <%= f.button :submit %>
+      </div>
+    <% end %>
+  </p>
+</div>

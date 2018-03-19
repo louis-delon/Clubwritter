@@ -1,2 +1,13 @@
-<h1>Themes#new</h1>
-<p>Find me in app/views/themes/new.html.erb</p>
+<h1>Créez votre thème</h1>
+
+<div class="container">
+  <h1>Commencez à écrire !</h1>
+  <p>
+    <%= simple_form_for (@theme) do |f| %>
+      <%= f.input :name, as: :text, label: "Titre de votre thème", placeholder: "décrivez le theme de votre challenge" %>
+      <%= f.input :deadline, label: "Deadline de votre thème", order: [:day, :month, :year], placeholder: "précisez la date limite de votre challenge" %>
+      <%= f.input :category_id, label: "Sélectionnez votre catégorie", collection: @categories %>
+      <%= f.button :submit %>
+    <% end %>
+  </p>
+</div>

@@ -3,7 +3,7 @@
   <h2><%= "Thème proposé par #{@theme.user.pseudo}"%></h2>
   <br>
   <br>
-  <!-- j'affiche tous les posts du theme si la deadline est passée -->
+  <!-- user can see all the posts for other users if deadline is past -->
   <% if @theme.deadline.past? %>
     <%= "Theme terminé depuis le #{@theme.deadline}" %>
     <div class="row">
@@ -13,7 +13,7 @@
       <% end %>
     </div>
   <% else %>
-    <!-- j'affiche le post du user s'il a commencé à rédiger un post mais que la deadline n'est pas passée -->
+      <!-- user can update the post if the post exists and theadline is not past -->
     <% if Post.exists?(theme_id: @theme.id, user_id: current_user.id) %>
       <div class="row">
         <% @current_user_post.reduce do |post| %>
@@ -22,10 +22,17 @@
         <% end %>
       </div> %>
       <p><%= "Il vous reste #{@number_of_days} jours pour finaliser votre texte" %></p>
-      <%= link_to "Poursuivre votre article", edit_theme_post_path([@theme, @current_user_post]), class: "btn btn-primary" %>
+      <%= link_to "Poursuivre votre article", edit_theme_post_path([@theme, @post]), class: "btn btn-primary" %>
     <% else %>
+    <!-- if post doesn't exist, user can write a post -->
      <p><%= "Il vous reste #{@number_of_days} jours pour proposer un texte sur ce theme" %></p>
      <%= link_to "Ecrire un article", new_theme_post_path([@theme, @post]), class: "btn btn-primary" %>
     <% end %>
   <% end %>
+
+  <% if policy(@theme).update? %>
+    <%= link_to "mettre à jour", class: btn btn primary,  %>
+  <% end %>
+
+
 </div>

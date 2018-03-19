@@ -1,6 +1,6 @@
 class ThemesController < ApplicationController
 
-  before_action :set_theme, only: [:new, :create, :show]
+  before_action :set_theme, only: [:show, :edit, :update, :destroy]
 
   def index
     @themes = policy_scope(Theme)
@@ -8,10 +8,19 @@ class ThemesController < ApplicationController
 
   def new
     @theme = Theme.new
+    @categories = Category.all.sort_by { |category| category.name}
+    authorize @theme
   end
 
   def create
-
+    @theme = Theme.new(theme_params)
+    @theme.user = current_user
+    authorize @theme
+    if @theme.save
+      redirect_to theme_path(@theme)
+    else
+      render :new
+    end
   end
 
   def show
@@ -23,13 +32,24 @@ class ThemesController < ApplicationController
     @post.theme_id = @theme.id
     @post.user_id = current_user.id
     authorize @theme
-    # binding.pry
+  end
+
+  def edit
+  end
+
+  def update
+    @theme.update(theme_params)
+    redirect_to theme_path(@theme), notice: "votre texte a été modifé avec succès"
+  end
+
+  def destroy
+    @theme.destroy
+    redirect_to themes_path
   end
 
   private
 
-
-def number_of_days_for_apply(deadline)
+  def number_of_days_for_apply(deadline)
     deadline.mjd-DateTime.now.mjd
   end
 
