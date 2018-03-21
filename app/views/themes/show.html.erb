@@ -19,7 +19,7 @@
   <% if policy(@theme).show? && policy_scope(Post) && @theme.deadline.past? %>
     <%= "Theme terminé depuis le #{@theme.deadline}" %>
     <div class="row">
-      <% @all_posts.reduce do |post| %>
+      <% @posts.where(theme_id: @theme.id).each do |post| %>
         <h3><%= post.content %></h3>
         <p><%= post.user.pseudo %></p>
       <% end %>
@@ -32,7 +32,8 @@
           <h3><%= post.content %></h3>
           <p><%= post.user.pseudo %></p>
         <% end %>
-      </div> %>
+      </div>
+      <%=  %>
       <p><%= "Il vous reste #{@number_of_days} jours pour finaliser votre texte" %></p>
       <%= link_to "Poursuivre votre article", edit_theme_post_path([@theme, @post]), class: "btn btn-primary" %>
     <% else %>

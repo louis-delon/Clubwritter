@@ -39,7 +39,7 @@ class PostsController < ApplicationController
   def update
     @post.update(post_params)
     authorize @post
-    redirect_to theme_path(@theme)
+    redirect_to theme_path(@theme), notice: "votre article a été mis à jour!"
   end
 
   private

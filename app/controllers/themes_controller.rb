@@ -24,7 +24,7 @@ class ThemesController < ApplicationController
   end
 
   def show
-    @all_posts = Post.where(theme_id: @theme.id)
+    @posts = Post.all
     @current_user_post = user_has_a_post(current_user)
     #calculate the number of day before the end of the inscription period
     @number_of_days = number_of_days_for_apply(@theme.deadline)
