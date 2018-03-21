@@ -6,29 +6,33 @@ class PostPolicy < ApplicationPolicy
   end
 
   def new?
-    true
+    create?
   end
 
   def create?
-    true
+    !theme_is_published?
   end
 
   def edit?
-    true
+    update?
   end
 
   def update?
-    true
+    user_is_owner? && !theme_is_published?
   end
 
   def destroy?
-    true
+   user_is_owner? && !theme_is_published?
   end
 
   private
 
   def user_is_owner?
     user == @record.user
+  end
+
+  def theme_is_published?
+    @record.theme.deadline.past?
   end
 
 end

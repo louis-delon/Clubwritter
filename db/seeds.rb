@@ -128,7 +128,7 @@ puts "creating posts"
 post1 = Post.create!(
     content: 'je pense que le bonheur est un choix et non un état',
     private: false,
-    online: false,
+    published: false,
     user_id: olivier.id,
     theme_id: theme1.id,
     category_id: category1.id
@@ -136,7 +136,7 @@ post1 = Post.create!(
 post2 = Post.create!(
     content: 'l\'amour est un incroyable sentiment que je ne saurais décrire en quelques mots, il me faudrait des nuites entieres pour ecpliquer ce que je ressens lorsque je suis amoureux',
     private: false,
-    online: true,
+    published: true,
     user_id: louis.id,
     theme_id: theme2.id,
     category_id: category1.id
@@ -145,7 +145,7 @@ post2 = Post.create!(
 post3 = Post.create!(
     content: 'pour moi dieu n\'est que le reflet de la peur de la mort des hommes',
     private: false,
-    online: true,
+    published: true,
     user_id: olivier.id,
     theme_id: theme4.id,
     category_id: category1.id
@@ -154,7 +154,7 @@ post3 = Post.create!(
 post4 = Post.create!(
     content: 'de tout temps les hommes ont assimilé dieu à toutes les questions auxquelles ils n avaient pas réponse',
     private: false,
-    online: true,
+    published: true,
     user_id: martin.id,
     theme_id: theme4.id,
     category_id: category1.id
@@ -163,7 +163,7 @@ post4 = Post.create!(
 post5 = Post.create!(
     content: 'ce post permet de tester que lorsque la deadline est passé, un contributeur peut voir les textes des autres contributeurs du theme',
     private: false,
-    online: true,
+    published: true,
     user_id: martin.id,
     theme_id: theme2.id,
     category_id: category1.id
@@ -173,7 +173,7 @@ post5 = Post.create!(
 #   Post.create!(
 #     content: Faker::Lovecraft.paragraphs,
 #     private: false,
-#     online: false,
+#     published: false,
 #     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
 #     theme_id: ((Theme.first.id)..(Theme.last.id)).to_a.sample,
 #     category_id: ((Category.first.id)..(Category.last.id)).to_a.sample

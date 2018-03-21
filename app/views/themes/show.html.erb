@@ -1,7 +1,7 @@
 <div class="container">
   <h1><%= "#{@theme.name}" %></h1>
 
-  <% if policy(@theme).update? %>
+  <% if policy(@theme).edit? %>
     <%= link_to(edit_theme_path(@theme), class: "btn btn--secondary") do %>
     <%= fa_icon "edit" %>Edit
     <% end %>
@@ -16,7 +16,7 @@
   <br>
   <br>
   <!-- user can see all the posts for other users if deadline is past -->
-  <% if @theme.deadline.past? && policy(@theme).show? %>
+  <% if policy(@theme).show? && policy_scope(Post) && @theme.deadline.past? %>
     <%= "Theme terminé depuis le #{@theme.deadline}" %>
     <div class="row">
       <% @all_posts.reduce do |post| %>
@@ -30,7 +30,6 @@
       <div class="row">
         <% @current_user_post.reduce do |post| %>
           <h3><%= post.content %></h3>
-        <p>-----------------------------------------------------</p>
           <p><%= post.user.pseudo %></p>
         <% end %>
       </div> %>

@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   before_action :set_post, only: [:show]
   before_action :set_theme, only: [:index, :new, :create, :show, :edit, :update]
-  before_action :set_current_user_post, only: [:edit]
+  before_action :set_current_user_post, only: [:edit, :update]
 
   def index
     @posts = policy_scope(Post)
@@ -39,6 +39,7 @@ class PostsController < ApplicationController
   def update
     @post.update(post_params)
     authorize @post
+    redirect_to theme_path(@theme)
   end
 
   private
@@ -52,7 +53,7 @@ class PostsController < ApplicationController
   end
 
   def set_current_user_post
-    @post = Post.where(theme_id: @theme.id, user_id: current_user.id)
+    @post = Post.where(theme_id: @theme.id, user_id: current_user.id).first
   end
 
   def post_params

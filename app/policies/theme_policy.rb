@@ -10,7 +10,7 @@ class ThemePolicy < ApplicationPolicy
   end
 
   def new?
-    true
+    create?
   end
 
   def create?
@@ -18,15 +18,25 @@ class ThemePolicy < ApplicationPolicy
   end
 
   def edit?
-    true
+    update?
   end
 
   def update?
-    true
+    owner_is_user? && !deadline_is_passed?
   end
 
   def destroy?
-    true
+    owner_is_user? && !deadline_is_passed?
+  end
+
+  private
+
+  def owner_is_user?
+    @record.user == user
+  end
+
+  def deadline_is_passed?
+    @record.deadline.past?
   end
 
 end
