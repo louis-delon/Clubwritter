@@ -18,7 +18,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def update?
-    user_is_owner? && !theme_is_published?
+    user_is_owner? && !theme_is_published? && user_has_a_post?(user)
   end
 
   def destroy?
@@ -33,6 +33,10 @@ class PostPolicy < ApplicationPolicy
 
   def theme_is_published?
     @record.theme.deadline.past?
+  end
+
+  def user_has_a_post?(user)
+    Post.exists?(theme_id: @record.theme.id, user_id: user.id)
   end
 
 end

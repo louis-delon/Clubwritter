@@ -19,13 +19,14 @@ class ThemesController < ApplicationController
     if @theme.save
       redirect_to theme_path(@theme)
     else
+      # redirect_to new_theme_path(@theme)
       render :new
     end
   end
 
   def show
     @posts = Post.all
-    @current_user_post = user_has_a_post(current_user)
+    # binding.pry
     #calculate the number of day before the end of the inscription period
     @number_of_days = number_of_days_for_apply(@theme.deadline)
     @post = Post.new
@@ -51,6 +52,7 @@ class ThemesController < ApplicationController
     redirect_to themes_path
   end
 
+
   private
 
   def number_of_days_for_apply(deadline)
@@ -63,10 +65,6 @@ class ThemesController < ApplicationController
 
   def theme_params
     params.require(:theme).permit(:name, :deadline, :category_id, :user_id)
-  end
-
-  def user_has_a_post(user)
-    Post.where(theme_id: @theme.id, user_id: user.id)
   end
 
 end

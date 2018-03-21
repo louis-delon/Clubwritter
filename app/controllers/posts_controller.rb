@@ -1,8 +1,7 @@
 class PostsController < ApplicationController
 
-  before_action :set_post, only: [:show]
-  before_action :set_theme, only: [:index, :new, :create, :show, :edit, :update]
-  before_action :set_current_user_post, only: [:edit, :update]
+  before_action :set_theme
+  before_action :set_post, only: [:edit, :update, :destroy]
 
   def index
     @posts = policy_scope(Post)
@@ -29,9 +28,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def edit
     authorize @post
   end
@@ -42,6 +38,12 @@ class PostsController < ApplicationController
     redirect_to theme_path(@theme), notice: "votre article a été mis à jour!"
   end
 
+  def destroy
+    @post.destroy
+    authorize @post
+    redirect_to theme_path(@theme), notice: "votre article a été supprimé"
+  end
+
   private
 
   def set_theme
@@ -49,10 +51,7 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find(params[:id])
-  end
-
-  def set_current_user_post
+    #allow to display a post only if the post belongs to current_user
     @post = Post.where(theme_id: @theme.id, user_id: current_user.id).first
   end
 

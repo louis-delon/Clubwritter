@@ -6,5 +6,6 @@ class Theme < ApplicationRecord
   has_many :inscriptions, dependent: :destroy
   validates :name, presence: true
   validates :deadline, presence: true
+  validates :category_id, presence: true
 
 end
