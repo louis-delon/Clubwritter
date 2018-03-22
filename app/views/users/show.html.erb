@@ -1,2 +1,61 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+<section id="user__infos">
+  <div class="container">
+    <% if policy(@user).update? %>
+      <h1>Mon profil (<%= @user.pseudo.capitalize %>)</h1>
+      <%= link_to "éditer mon profil", edit_user_path(@user), class: "btn btn--secondary" %>
+    <% else %>
+      <h1>Profil de <%= @user.pseudo.capitalize %></h1>
+    <% end %>
+  </div>
+</section>
+<!-- <section id="user__info">
+  <div class="container">
+
+  </div>
+</section> -->
+
+<section id="user__posts">
+  <div class="container">
+    <% if policy(@user).update? %>
+      <!-- current user has already wrotten some posts -->
+      <% if @user.posts.any? %>
+        <h2><%= "Mes articles" %></h2>
+      <% else %>
+      <!-- current user hasn't wrotten some posts yet -->
+        <h2><%= "Vous n'avez pas encore rédigé d'article" %></h2>
+      <% end %>
+    <% else %>
+      <% if @user.posts.any? %>
+        <h2><%= "Articles de #{@user.pseudo.capitalize}" %></h2>
+      <% else %>
+        <h2><%= "#{@user.pseudo.capitalize} n'a pas encore écrit d'article" %></h2>
+      <% end %>
+    <% end %>
+</section>
+
+<section id="user__themes">
+  <div class="container">
+    <% if @user.themes.any? %>
+      <% if policy(@user).edit? %>
+        <h2>Mes themes</h2>
+      <% elsif policy(@user).show? %>
+        <h2>Themes publiés par <%= @user.pseudo %></h2>
+      <% end %>
+    <% else %>
+      <% if policy(@user).edit? %>
+        <h2>Vous n'avez pas encore publié de thèmes</h2>
+      <% elsif policy(@user).show? %>
+        <h2><%= @user.pseudo %> n'a pas encore publié de thème</h2>
+      <% end %>
+    <% end %>
+
+    <div class="row user__posts__list">
+      <% @user.posts.each do |post| %>
+        <div class="col-lg-3">
+          <%= post.content %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

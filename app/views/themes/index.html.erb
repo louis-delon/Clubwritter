@@ -2,8 +2,8 @@
 
 <% @themes.each do |theme| %>
   <div class=row>
+    <!-- only theme which are still ongoing or past themes which contains at least one post are displayed -->
     <% if theme.posts.any? || !theme.deadline.past? %>
-    <!-- seul les themes qui ont au moins un post sont affichés sauf si la deadline n'est pas passée -->
       <h1><%= link_to "#{theme.name}", theme_path(theme) %></h1>
       <%= theme.user.pseudo %><br>
       <%= theme.created_at %><br>
