@@ -15,6 +15,33 @@
   </div>
 </section> -->
 
+<section id="user__themes">
+  <div class="container">
+    <% if @user.themes.any? %>
+      <% if policy(@user).edit? %>
+        <h2>Mes themes</h2>
+      <% elsif policy(@user).show? %>
+        <h2>Themes publiés par <%= @user.pseudo %></h2>
+      <% end %>
+    <% else %>
+      <% if policy(@user).edit? %>
+        <h2>Vous n'avez pas encore publié de thèmes</h2>
+      <% elsif policy(@user).show? %>
+        <h2><%= @user.pseudo %> n'a pas encore publié de thème</h2>
+      <% end %>
+    <% end %>
+
+  <div class="row user__posts__list">
+    <% @user.themes.each do |theme| %>
+      <div class="col-lg-3">
+        <%= link_to "#{theme.name}", theme_path(theme) %>
+      </div>
+    <% end %>
+  </div>
+
+  </div>
+</section>
+
 <section id="user__posts">
   <div class="container">
     <% if policy(@user).update? %>
@@ -32,30 +59,17 @@
         <h2><%= "#{@user.pseudo.capitalize} n'a pas encore écrit d'article" %></h2>
       <% end %>
     <% end %>
-</section>
-
-<section id="user__themes">
-  <div class="container">
-    <% if @user.themes.any? %>
-      <% if policy(@user).edit? %>
-        <h2>Mes themes</h2>
-      <% elsif policy(@user).show? %>
-        <h2>Themes publiés par <%= @user.pseudo %></h2>
-      <% end %>
-    <% else %>
-      <% if policy(@user).edit? %>
-        <h2>Vous n'avez pas encore publié de thèmes</h2>
-      <% elsif policy(@user).show? %>
-        <h2><%= @user.pseudo %> n'a pas encore publié de thème</h2>
-      <% end %>
-    <% end %>
 
     <div class="row user__posts__list">
       <% @user.posts.each do |post| %>
-        <div class="col-lg-3">
-          <%= post.content %>
+        <div class="col-lg-12">
+          <p>(<%= post.theme.name %>)</p>
+          <p><%= post.content %></p>
+          <br>
         </div>
       <% end %>
     </div>
   </div>
 </section>
+
+
