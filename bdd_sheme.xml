@@ -48,7 +48,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1273" y="374" name="comments">
+<table x="1277" y="454" name="comments">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -62,7 +62,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1221" y="274" name="votes">
+<table x="1091" y="302" name="votes">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -82,6 +82,9 @@
 <default>NULL</default></row>
 <row name="email" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="avatar" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
@@ -131,7 +134,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="903" y="302" name="Posts">
+<table x="890" y="265" name="Posts">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
