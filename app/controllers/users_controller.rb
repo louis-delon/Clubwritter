@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @user_avatar = @user.avatar || "default-avatar.png"
     authorize @user
   end
 
