@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_action :user_is_owner, only: [:edit, :update]
+
   def index
   end
 
@@ -9,14 +12,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
-    authorize @user
   end
 
   def update
-    @user = current_user
     @user.update(user_params)
-    authorize @user
     redirect_to user_path(@user)
   end
 
@@ -24,6 +23,11 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:pseudo)
+  end
+
+  def user_is_owner
+    @user = current_user
+    authorize @user
   end
 
 end

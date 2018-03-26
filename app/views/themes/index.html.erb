@@ -1,5 +1,16 @@
 <div class="container">
 
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Filtrer
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="/themes">Tous</a>
+      <a class="dropdown-item" href="/themes/pending">En cours</a>
+      <a class="dropdown-item" href="/themes/ended">Terminés</a>
+    </div>
+  </div>
+
 <% @themes.each do |theme| %>
   <div class=row>
     <!-- only theme which are still ongoing or past themes which contains at least one post are displayed -->

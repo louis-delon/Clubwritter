@@ -29,6 +29,14 @@ class ThemePolicy < ApplicationPolicy
     owner_is_user? && !deadline_is_passed?
   end
 
+  def ended?
+    true
+  end
+
+  def pending?
+    true
+  end
+
   private
 
   def owner_is_user?

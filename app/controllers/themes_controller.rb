@@ -52,8 +52,25 @@ class ThemesController < ApplicationController
     redirect_to themes_path
   end
 
+  # allow to filter all themes which are ended
+  def ended
+    @themes = policy_scope(Theme)
+    @ended_themes = @themes.select { |theme| theme if deadline_is_passed?(theme) }
+    authorize @themes
+  end
+
+  # allow to filter all themes which are pending
+  def pending
+    @themes = policy_scope(Theme)
+    @pending_themes = @themes.select { |theme| theme if !deadline_is_passed?(theme) }
+    authorize @themes
+  end
 
   private
+
+  def deadline_is_passed?(theme)
+    theme.deadline.past?
+  end
 
   def number_of_days_for_apply(deadline)
     deadline.mjd-DateTime.now.mjd

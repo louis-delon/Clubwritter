@@ -19,6 +19,7 @@ gem 'webpacker'
 gem 'pundit'
 gem 'font-awesome-rails', '~> 4.6', '>= 4.6.3.1'
 gem 'jquery-rails'
+gem 'ransack'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
