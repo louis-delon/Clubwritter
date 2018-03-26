@@ -1,13 +1,17 @@
 
-<section id="user__infos">
+<section >
   <div class="container">
-    <% if policy(@user).update? %>
-      <h1>Mon profil (<%= @user.pseudo.capitalize %>)</h1>
-      <p><%= image_tag @user_avatar, crop: :thumb, gravity: :face, width: 100, height: 100 %></p>
-      <%= link_to "Editer mon profil", edit_user_path(@user), class: "btn btn--secondary" %>
-    <% else %>
-      <h1>Profil de <%= @user.pseudo.capitalize %></h1>
-    <% end %>
+    <div class="row user__infos">
+      <div class= "col-xs-12 col-sm-12 col-lg-12">
+        <% if policy(@user).update? %>
+          <h1>Mon profil (<%= @user.pseudo.capitalize %>)</h1>
+          <p><%= image_tag @user_avatar, crop: :thumb, gravity: :face, width: 100, height: 100 %></p>
+          <%= link_to "Editer mon profil", edit_user_path(@user), class: "btn btn--secondary" %>
+        <% else %>
+          <h1>Profil de <%= @user.pseudo.capitalize %></h1>
+        <% end %>
+      </div>
+    </div>
   </div>
 </section>
 <!-- <section id="user__info">
@@ -18,27 +22,31 @@
 
 <section id="user__posts">
   <div class="container">
-    <% if policy(@user).update? %>
-      <!-- current user has already wrotten some posts -->
-      <% if @user.posts.any? %>
-        <h2><%= "Mes articles" %></h2>
-      <% else %>
-      <!-- current user hasn't wrotten some posts yet -->
-        <h2><%= "Vous n'avez pas encore rédigé d'article" %></h2>
-      <% end %>
-    <% else %>
-      <% if @user.posts.any? %>
-        <h2><%= "Articles de #{@user.pseudo.capitalize}" %></h2>
-      <% else %>
-        <h2><%= "#{@user.pseudo.capitalize} n'a pas encore écrit d'article" %></h2>
-      <% end %>
-    <% end %>
+    <div class="row post__title">
+      <div class=" col-xs-12 col sm 12 col lg 12">
+        <% if policy(@user).update? %>
+          <!-- current user has already wrotten some posts -->
+          <% if @user.posts.any? %>
+            <h2><%= "Mes articles" %></h2>
+          <% else %>
+          <!-- current user hasn't wrotten some posts yet -->
+            <h2><%= "Vous n'avez pas encore rédigé d'article" %></h2>
+          <% end %>
+        <% else %>
+          <% if @user.posts.any? %>
+            <h2><%= "Articles de #{@user.pseudo.capitalize}" %></h2>
+          <% else %>
+            <h2><%= "#{@user.pseudo.capitalize} n'a pas encore écrit d'article" %></h2>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
 
-    <div class="row user__posts__list">
+    <div class="row theme__title">
       <% @user.posts.each do |post| %>
-        <div class="col-lg-12">
-          <p><%= link_to post.theme.name, theme_path(post.theme) %> - (<%= link_to post.theme.user.pseudo, user_path(post.theme.user) %>)</p>
-          <p><%= post.content %></p>
+        <div class="col-xs-12, col sm 12, col lg 12">
+          <h2><%= link_to post.theme.name, theme_path(post.theme) %> - (<%= link_to post.theme.user.pseudo, user_path(post.theme.user) %>)</h2>
+          <p class= "post__content"><%= post.content %></p>
           <br>
         </div>
       <% end %>

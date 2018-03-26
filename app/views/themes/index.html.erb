@@ -1,25 +1,22 @@
 <div class="container">
 
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Filtrer
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="/themes">Tous</a>
-      <a class="dropdown-item" href="/themes/pending">En cours</a>
-      <a class="dropdown-item" href="/themes/ended">Terminés</a>
-    </div>
+  <div class="filter__theme">
+
+    <p><%= link_to "Tous", themes_path %></p>
+    <p><%= link_to "En cours", pending_themes_path %></p>
+    <p><%= link_to "Terminés", ended_themes_path %></p>
+
   </div>
 
-<% @themes.each do |theme| %>
-  <div class=row>
-    <!-- only theme which are still ongoing or past themes which contains at least one post are displayed -->
-    <% if theme.posts.any? || !theme.deadline.past? %>
-      <h1><%= link_to "#{theme.name}", theme_path(theme) %></h1>
-      <%= theme.user.pseudo %><br>
-      <%= theme.created_at %><br>
-    <% end %>
-  </div>
-<% end %>
+  <% @themes.each do |theme| %>
+    <div class="row theme__details">
+      <!-- only theme which are still ongoing or past themes which contains at least one post are displayed -->
+      <% if theme.posts.any? || !theme.deadline.past? %>
+        <h1><%= link_to "#{theme.name}", theme_path(theme) %></h1>
+        <%= theme.user.pseudo %><br>
+        <%= theme.created_at %><br>
+      <% end %>
+    </div>
+  <% end %>
 
 </div>
