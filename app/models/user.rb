@@ -7,6 +7,6 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :inscriptions, dependent: :destroy
   has_many :themes, dependent: :destroy
-  validates :pseudo, presence: true, uniqueness: true
+  # validates :pseudo, presence: true, uniqueness: true
 
 end
