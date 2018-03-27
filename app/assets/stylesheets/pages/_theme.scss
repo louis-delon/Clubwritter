@@ -1,17 +1,15 @@
 
-.theme__title h2 {
+.theme__title h1{
   font-size: 22px;
   padding: 20px;
 }
 
-
-.theme_details {
-
-}
-
 .filter__theme {
   display: flex;
-  justify-content: space-around;
-  padding-right: 400px;
 }
 
+.filter__theme p{
+  margin-right: 30px;
+  margin-top: 20px;
+  font-size: 16px;
+}

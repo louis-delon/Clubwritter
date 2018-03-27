@@ -1,22 +1,22 @@
 <div class="container">
+  <div class="row">
+    <div class="filter__theme col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-  <div class="filter__theme">
+      <p><%= link_to "Tous", themes_path %></p>
+      <p><%= link_to "En cours", pending_themes_path %></p>
+      <p><%= link_to "Terminés", ended_themes_path %></p>
 
-    <p><%= link_to "Tous", themes_path %></p>
-    <p><%= link_to "En cours", pending_themes_path %></p>
-    <p><%= link_to "Terminés", ended_themes_path %></p>
-
+    </div>
   </div>
 
   <% @themes.each do |theme| %>
-    <div class="row theme__details">
+    <div class="row theme__title col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <!-- only theme which are still ongoing or past themes which contains at least one post are displayed -->
       <% if theme.posts.any? || !theme.deadline.past? %>
         <h1><%= link_to "#{theme.name}", theme_path(theme) %></h1>
-        <%= theme.user.pseudo %><br>
-        <%= theme.created_at %><br>
+        <p>Thème proposé par: <%= theme.user.pseudo %></p>
+        <p>Date limite: <%= theme.deadline %></p><br>
       <% end %>
     </div>
   <% end %>
-
 </div>
