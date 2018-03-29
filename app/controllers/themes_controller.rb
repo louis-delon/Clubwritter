@@ -32,31 +32,28 @@ class ThemesController < ApplicationController
     if Post.exists?(user_id: current_user.id, theme_id: @theme.id)
       # user has already started to write a post
       @post = Post.where(user_id: current_user.id, theme_id: @theme.id).first
-      authorize @theme
     else
       # user has not written a post yet
       @post = Post.new
       @post.theme_id = @theme.id
       @post.user_id = current_user.id
-      authorize @theme
     end
 
   end
 
   def edit
     @categories = Category.all.sort_by { |category| category.name}
-    authorize @theme
+
+
   end
 
   def update
     @theme.update(theme_params)
-    authorize @theme
     redirect_to theme_path(@theme), notice: "votre article a été modifé avec succès"
   end
 
   def destroy
     @theme.destroy
-    authorize @theme
     redirect_to themes_path, notice: "votre article a été supprimé avec succès"
   end
 
@@ -87,6 +84,7 @@ class ThemesController < ApplicationController
 
   def set_theme
     @theme = Theme.find(params[:id])
+    authorize @theme
   end
 
   def theme_params
