@@ -29,9 +29,7 @@
       <!-- user can update the post if the post exists and theadline is not past -->
     <% if policy(@post).update? %>
       <div class="row">
-        <% Post.where(theme_id: @theme.id, user_id: current_user.id).each do |post| %>
-          <h3><%= post.content %></h3>
-        <% end %>
+        <h3><%= @post.content %></h3>
       </div>
       <p><%= "Il vous reste #{@number_of_days} jours pour finaliser votre texte" %></p>
       <%= link_to "Poursuivre votre article", edit_theme_post_path([@theme, @post]), class: "btn btn-primary" %>

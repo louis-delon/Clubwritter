@@ -26,13 +26,21 @@ class ThemesController < ApplicationController
 
   def show
     @posts = Post.all
-    # binding.pry
     #calculate the number of day before the end of the inscription period
     @number_of_days = number_of_days_for_apply(@theme.deadline)
-    @post = Post.new
-    @post.theme_id = @theme.id
-    @post.user_id = current_user.id
-    authorize @theme
+
+    if Post.exists?(user_id: current_user.id, theme_id: @theme.id)
+      # user has already started to write a post
+      @post = Post.where(user_id: current_user.id, theme_id: @theme.id).first
+      authorize @theme
+    else
+      # user has not written a post yet
+      @post = Post.new
+      @post.theme_id = @theme.id
+      @post.user_id = current_user.id
+      authorize @theme
+    end
+
   end
 
   def edit
@@ -43,13 +51,13 @@ class ThemesController < ApplicationController
   def update
     @theme.update(theme_params)
     authorize @theme
-    redirect_to theme_path(@theme), notice: "votre texte a été modifé avec succès"
+    redirect_to theme_path(@theme), notice: "votre article a été modifé avec succès"
   end
 
   def destroy
     @theme.destroy
     authorize @theme
-    redirect_to themes_path
+    redirect_to themes_path, notice: "votre article a été supprimé avec succès"
   end
 
   # allow to filter all themes which are ended
@@ -73,6 +81,7 @@ class ThemesController < ApplicationController
   end
 
   def number_of_days_for_apply(deadline)
+    #number of day before the theme ends.After this deadline, user can't write a post
     deadline.mjd-DateTime.now.mjd
   end
 
