@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   private
 
+  # set automatically a username from the email when user registers itself
   def set_pseudo
     self.pseudo = "#{self.email[/^[^@]+/]}-#{SecureRandom.hex(1)}"
   end

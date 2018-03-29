@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
 
-  resources :users, only: [:show, :edit, :update, :index]
+  resources :users, only: [:show, :edit, :update] do
+    resources :posts, only: [:index]
+  end
+
   resources :themes do
-    resources :posts
-    resources :inscriptions, only: [:new, :create, :index, :show, :destroy]
+    resources :posts, only: [:new, :create, :show, :edit, :destroy, :update]
     collection do
       get 'pending'
       get 'ended'

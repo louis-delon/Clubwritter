@@ -1,3 +1,29 @@
+<section>
+  <div class="container">
+    <div class="row post__title">
+      <div class=" col-xs-12 col sm 12 col lg 12">
+        <% if policy(@user).update?%>
+          <!-- current user is the owner of the posts -->
+          <h2><%= "Mes articles" %></h2>
+        <% else %>
+          <h2><%= "Articles de #{@user.pseudo.capitalize}" %></h2>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row theme__title">
+    <% @user.posts.each do |post| %>
+      <div class="col-xs-12, col sm 12, col lg 12">
+        <h1><%= link_to post.theme.name, theme_path(post.theme) %> - (<%= link_to post.theme.user.pseudo, user_path(post.theme.user) %>)</h1>
+        <p class= "post__content"><%= post.content %></p>
+        <br>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+
+
 
 
 
