@@ -3,8 +3,12 @@
     <div class="row post__title">
       <div class=" col-xs-12 col sm 12 col lg 12">
         <% if policy(@user).update?%>
+          <% if @user.posts.any? %>
           <!-- current user is the owner of the posts -->
-          <h2><%= "Mes articles" %></h2>
+            <h2><%= "Mes articles" %></h2>
+          <% else %>
+            <h2><%= "Vous n'avez pas encore rédigé d'articles" %></h2>
+          <% end %>
         <% else %>
           <h2><%= "Articles de #{@user.pseudo.capitalize}" %></h2>
         <% end %>
