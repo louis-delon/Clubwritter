@@ -1,5 +1,5 @@
 class ThemesController < ApplicationController
-
+  skip_before_action :authenticate_user!, only: [:index]
   before_action :set_theme, only: [:show, :edit, :update, :destroy]
 
   def index
