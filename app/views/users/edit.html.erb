@@ -3,9 +3,17 @@
   <p>
     <%= simple_form_for (@user) do |f| %>
       <%= f.input :pseudo, label: "Pseudo" %>
-      <%= f.button :submit %>
-      <%= f.input :avatar %>
-      <%= f.input :avatar_cache, as: :hidden %>
+      <br>
+      <% if @user.avatar.present? %>
+        <%= cl_image_tag @user.avatar, height: 75, width: 100, crop: :fill %>
+        <%= f.input :avatar, label: "Changer mon avatar" %>
+      <% else %>
+        <%= f.input :avatar, label: "ajoutez votre avatar" %>
+        <%= f.input :avatar_cache, as: :hidden %>
+      <% end %>
+      <br>
+      <br>
+      <%= f.button :submit, "mettre à jour le profil" %>
     <% end %>
   </p>
 </div>

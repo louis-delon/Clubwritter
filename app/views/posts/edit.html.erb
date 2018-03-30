@@ -1,8 +1,7 @@
-<h1>Rédieger mon article</h1>
 
 <div class="container">
-
-  <h1>Commencez à écrire !</h1>
+  <h1>Poursuivre mon article</h1>
+  <br>
   <p>
     <%= simple_form_for [@theme, @post] do |f| %>
       <%= f.error_notification %>
@@ -14,7 +13,7 @@
         <%= f.input :private, as: :boolean, inline_label: 'Je souhaite que ce contenu reste privé' %>
       </div>
       <div>
-        <%= f.button :submit %>
+        <%= f.button :submit, "mettre à jour" %>
       </div>
     <% end %>
   </p>
