@@ -4,6 +4,8 @@
     <%= simple_form_for (@user) do |f| %>
       <%= f.input :pseudo, label: "Pseudo" %>
       <%= f.button :submit %>
+      <%= f.input :avatar %>
+      <%= f.input :avatar_cache, as: :hidden %>
     <% end %>
   </p>
 </div>

@@ -1,12 +1,34 @@
 <div class="container">
   <h1>Proposez votre thème</h1>
-  <p>
+
     <%= simple_form_for (@theme) do |f| %>
     <%= f.error_notification %>
-      <%= f.input :name, as: :text, label: "Titre de votre thème", placeholder: "décrivez le theme de votre challenge" %>
-      <%= f.input :deadline, label: "Deadline de votre thème", order: [:day, :month, :year], placeholder: "précisez la date limite de votre challenge" %>
-      <%= f.input :category_id, label: "Sélectionnez votre catégorie", collection: @categories %>
-      <%= f.button :submit %>
+
+      <p>
+        <%= f.input :name, as: :text, label: "Titre de votre thème", placeholder: "décrivez le theme de votre challenge" %>
+      </p>
+
+      <p>
+        <%= f.input :deadline, label: "Deadline de votre thème", order: [:day, :month, :year], placeholder: "précisez la date limite de votre challenge" %>
+      </p>
+
+      <p>
+        <%= f.input :category_id, label: "Sélectionnez votre catégorie", collection: @categories %>
+      </p>
+
+      <p>
+        <%= f.label :photo do %>
+          <%= f.file_field :photo %>
+          <%= f.hidden_field :photo_cache %>
+        <% end %>
+      </p>
+
+      <p>
+        <%= f.button :submit %>
+      </p>
     <% end %>
-  </p>
+
 </div>
+
+
+

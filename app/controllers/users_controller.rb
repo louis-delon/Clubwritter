@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:pseudo)
+    params.require(:user).permit(:pseudo, :avatar)
   end
 
   # def user_is_owner

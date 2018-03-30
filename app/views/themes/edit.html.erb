@@ -1,12 +1,17 @@
 <div class="container">
   <h1>Mettez à jour votre article</h1>
-  <p>
+  <div>
     <%= simple_form_for (@theme) do |f| %>
       <%= f.input :name, as: :text, label: "Titre de votre thème", placeholder: "décrivez le theme de votre challenge" %>
       <%= f.input :deadline, label: "Deadline de votre thème", order: [:day, :month, :year], placeholder: "précisez la date limite de votre challenge" %>
       <%= f.input :category_id, label: "Sélectionnez votre catégorie", collection: @categories %>
-      <%= f.button :submit %>
+      <p>
+        <%= cl_image_tag(@theme.photo) if @theme.photo? %>
+        <%= f.file_field :photo %>
+        <%= f.hidden_field :photo_cache %>
+      </p>
+      <p><%= f.button :submit %></p>
     <% end %>
-  </p>
+  </div>
 </div>
 

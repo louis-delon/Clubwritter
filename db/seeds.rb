@@ -9,7 +9,7 @@ puts "Cleaning database..."
 Category.destroy_all
 User.destroy_all
 Theme.destroy_all
-Inscription.destroy_all
+# Inscription.destroy_all
 Post.destroy_all
 
 
@@ -102,19 +102,19 @@ theme4 = Theme.create!(
 #   )
 # end
 
-puts "creating inscriptions"
-inscription1 = Inscription.create!(
-    comment: 'bonjour je suis tres inspiré',
-    user_id: louis.id,
-    theme_id: theme2.id,
-    accepted: false
-  )
-inscription2 = Inscription.create!(
-    comment: 'bonjour j\'aimerais participer',
-    user_id: olivier.id,
-    theme_id: theme1.id,
-    accepted: true
-  )
+# puts "creating inscriptions"
+# inscription1 = Inscription.create!(
+#     comment: 'bonjour je suis tres inspiré',
+#     user_id: louis.id,
+#     theme_id: theme2.id,
+#     accepted: false
+#   )
+# inscription2 = Inscription.create!(
+#     comment: 'bonjour j\'aimerais participer',
+#     user_id: olivier.id,
+#     theme_id: theme1.id,
+#     accepted: true
+#   )
 # 50.times do
 #   Inscription.create!(
 #     comment: Faker::Dune.saying,

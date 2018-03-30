@@ -43,8 +43,6 @@ class ThemesController < ApplicationController
 
   def edit
     @categories = Category.all.sort_by { |category| category.name}
-
-
   end
 
   def update
@@ -88,7 +86,7 @@ class ThemesController < ApplicationController
   end
 
   def theme_params
-    params.require(:theme).permit(:name, :deadline, :category_id, :user_id)
+    params.require(:theme).permit(:name, :deadline, :category_id, :user_id, :photo)
   end
 
 end
