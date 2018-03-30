@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 20180322211256) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "inscriptions", force: :cascade do |t|
+    t.boolean "private"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "theme_id"
+    t.index ["theme_id"], name: "index_inscriptions_on_theme_id"
+    t.index ["user_id"], name: "index_inscriptions_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id"
@@ -65,6 +75,8 @@ ActiveRecord::Schema.define(version: 20180322211256) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "inscriptions", "themes"
+  add_foreign_key "inscriptions", "users"
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "themes"
   add_foreign_key "posts", "users"

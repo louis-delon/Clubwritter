@@ -20,6 +20,8 @@ gem 'pundit'
 gem 'font-awesome-rails', '~> 4.6', '>= 4.6.3.1'
 gem 'jquery-rails'
 gem 'ransack'
+gem 'cloudinary'
+gem 'carrierwave', '~> 1.2'
 
 
 group :development do
