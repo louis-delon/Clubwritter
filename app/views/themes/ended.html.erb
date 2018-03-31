@@ -1,14 +1,24 @@
-<div class="container">
+<%= render 'theme-navbar'%>
 
-  <% @ended_themes.each do |theme| %>
-    <div class=row>
-      <!-- only theme which are still ongoing or past themes which contains at least one post are displayed -->
-      <% if theme.posts.any? || !theme.deadline.past? %>
-        <h1><%= link_to "#{theme.name}", theme_path(theme) %></h1>
-        <%= theme.user.pseudo %><br>
-        <%= theme.created_at %><br>
-      <% end %>
-    </div>
-  <% end %>
+<div class="container ">
+  <div class="row ">
+    <% @ended_themes.each do |theme| %>
+      <div class=" col-xs-12 col-sm-6 col-md-4">
+        <!-- only theme which are still ongoing or past themes which contains at least one post are displayed -->
+        <% if theme.posts.any? || !theme.deadline.past? %>
 
+          <% if theme.photo.present? %>
+            <div class=" theme__box__with__photo">
+              <%= render 'theme-without-photo-card', theme: theme %>
+            </div>
+
+          <% else %>
+            <div class=" theme__box__without__photo">
+               <%= render 'theme-with-photo-card', theme: theme %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

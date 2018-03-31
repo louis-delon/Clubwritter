@@ -3,7 +3,7 @@ class ThemesController < ApplicationController
   before_action :set_theme, only: [:show, :edit, :update, :destroy]
 
   def index
-    @themes = policy_scope(Theme)
+    @themes = policy_scope(Theme).sort_by { |theme| theme.deadline}
   end
 
   def new
