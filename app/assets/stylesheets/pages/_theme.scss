@@ -1,7 +1,22 @@
 
-.theme__title h1{
+
+.theme__box {
+
+  height: 400px;
+  width: 390px;
+  padding: 0px 10px;
+  margin: 0px;
+  display: inline-block;
+}
+
+.theme__box h1 a{
   font-size: 22px;
-  padding: 20px;
+  color: black;
+}
+
+.theme__box p{
+  font-size: 16px;
+  color: $gray;
 }
 
 .filter__theme {
@@ -12,4 +27,9 @@
   margin-right: 30px;
   margin-top: 20px;
   font-size: 16px;
+}
+
+.filter__theme a{
+ color: black;
+ font-weight: 450;
 }

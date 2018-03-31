@@ -1,7 +1,7 @@
 <div class="container">
   <h1><%= "#{@theme.name}" %></h1>
   <% if @theme.photo.present? %>
-    <p><%= cl_image_tag @theme.photo, height: 300, width: 400, crop: :fill %></p>
+    <p><%= cl_image_tag @theme.photo, height: 150, width: 200, crop: :fill %></p>
   <% end %>
 
   <% if policy(@theme).edit? %>

@@ -8,7 +8,7 @@
         <%= cl_image_tag @user.avatar, height: 75, width: 100, crop: :fill %>
         <%= f.input :avatar, label: "Changer mon avatar" %>
       <% else %>
-        <%= f.input :avatar, label: "ajoutez votre avatar" %>
+        <%= f.input :avatar, label: "Ajoutez un avatar" %>
         <%= f.input :avatar_cache, as: :hidden %>
       <% end %>
       <br>

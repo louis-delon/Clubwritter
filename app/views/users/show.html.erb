@@ -5,8 +5,8 @@
       <div class= "col-xs-12 col-sm-12 col-lg-12">
         <% if policy(@user).update? %>
           <h1>Mon profil (<%= @user.pseudo.capitalize %>)</h1>
-          <p><%= image_tag @user_avatar, crop: :thumb, gravity: :face, width: 100, height: 100 %></p>
-          <%= link_to "Editer mon profil", edit_user_path(@user), class: "btn btn--secondary" %>
+            <%= render 'shared/avatar_picture' %>
+          <p><%= link_to "Editer mon profil", edit_user_path(@user), class: "btn btn--secondary" %></p>
         <% else %>
           <h1>Profil de <%= @user.pseudo.capitalize %></h1>
         <% end %>
