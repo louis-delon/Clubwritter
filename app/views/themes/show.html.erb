@@ -1,5 +1,6 @@
 <div class="container">
   <h1><%= "#{@theme.name}" %></h1>
+
   <% if @theme.photo.present? %>
     <p><%= cl_image_tag @theme.photo, height: 150, width: 200, crop: :fill %></p>
   <% end %>
@@ -9,6 +10,7 @@
     <%= fa_icon "edit" %>Edit
     <% end %>
   <% end %>
+
   <% if policy(@theme).destroy?%>
     <%= link_to(theme_path(@theme), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
       <%= fa_icon "remove" %>Delete
@@ -16,16 +18,21 @@
   <% end %>
 
   <h2><%= "Thème proposé par #{@theme.user.pseudo}"%></h2>
-  <p><%= @theme.category.name %> </p>
+  <p><%= @theme.category.name %></p>
   <br>
   <br>
-  <!-- user can see all the posts for other users if deadline is past -->
-  <% if policy(@theme).show? && policy_scope(Post) && @theme.deadline.past? %>
+  <!-- user can see all the posts for other users if deadline is past, unless a post has been requested as private. In this case, only users who's wrote a post in the theme can see the post -->
+  <% if @theme.deadline.past? && policy(@theme).show? %>
     <%= "Theme terminé depuis le #{@theme.deadline}" %>
     <% @posts.where(theme_id: @theme.id).each do |post| %>
       <div class="row">
-        <h3><%= post.content %></h3>
-        <p><%= post.user.pseudo %></p>
+        <% if policy(@post).show? %>
+          <h3><%= fa_icon "unlock" %> Article de <%= post.user.pseudo %></h3>
+          <p><%= post.content %></p>
+        <% else %>
+          <h3><%= fa_icon "lock" %> Article de <%= post.user.pseudo %></h3>
+          <p> Ce contenu est privé, seuls les utilisateurs ayant écrit dans le thème sont authorisé à lire l'article</p>
+        <% end %>
       </div>
     <% end %>
   <% else %>

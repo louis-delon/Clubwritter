@@ -4,7 +4,7 @@
   <p>
     <%= simple_form_for [@theme, @post] do |f| %>
       <%= f.input :content, as: :text %>
-      <%= f.input :private, as: :boolean, inline_label: 'Je souhaite que ce contenu reste privé' %>
+      <%= f.input :private, as: :boolean, checked_value: true, unchecked_value: false, inline_label: 'Je souhaite que ce contenu reste privé (seuls les contributeurs du thème pourront lire votre article)' %>
       <%= f.button :submit %>
     <% end %>
   </p>

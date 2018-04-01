@@ -13,6 +13,14 @@ class PostPolicy < ApplicationPolicy
     !theme_is_published?
   end
 
+  def show?
+    # false If the post is private and current user has not published a
+    # post in the theme, true if post is public
+    @record.private? && user_has_a_post? ? false : true
+    # raise
+
+  end
+
   def edit?
     update?
   end
