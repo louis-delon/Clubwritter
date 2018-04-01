@@ -4,6 +4,9 @@ class ThemesController < ApplicationController
 
   def index
     @themes = policy_scope(Theme).sort_by { |theme| theme.deadline}
+    @themes_with_post = @themes.select do |theme|
+      !deadline_is_passed?(theme) && theme_has_a_post?(theme)
+    end
   end
 
   def new
@@ -69,10 +72,14 @@ class ThemesController < ApplicationController
     authorize @themes
   end
 
-  private
+private
 
   def deadline_is_passed?(theme)
     theme.deadline.past?
+  end
+
+  def theme_has_a_post?(theme)
+    theme.posts.any?
   end
 
   def number_of_days_for_apply(deadline)

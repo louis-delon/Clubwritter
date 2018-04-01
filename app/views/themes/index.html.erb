@@ -5,7 +5,7 @@
     <% @themes.each do |theme| %>
       <div class=" col-xs-12 col-sm-6 col-md-4">
         <!-- only theme which are still ongoing or past themes which contains at least one post are displayed -->
-        <% if theme.posts.any? || !theme.deadline.past? %>
+
 
           <% if theme.photo.present? %>
             <div class=" theme__box__with__photo">
@@ -18,7 +18,7 @@
             </div>
 
           <% end %>
-        <% end %>
+
       </div>
     <% end %>
   </div>
