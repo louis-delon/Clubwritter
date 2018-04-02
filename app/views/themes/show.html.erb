@@ -28,7 +28,7 @@
         <%= "Theme terminé depuis le #{@theme.deadline}" %>
         <% @posts.where(theme_id: @theme.id).each do |post| %>
           <div class="row">
-            <% if policy(@post).show? %>
+            <% if policy(post).show? %>
               <h3><%= fa_icon "unlock" %> Article de <%= post.user.pseudo %></h3>
               <p><%= post.content %></p>
             <% else %>
