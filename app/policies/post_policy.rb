@@ -16,7 +16,12 @@ class PostPolicy < ApplicationPolicy
   def show?
     # false if the post is private and current user has not published a
     # post in the theme, true if post is not private
-     !user_has_a_post? && post_is_private? ? false : true
+    if user.nil?
+      # user is not logged in
+      post_is_private? ? false : true
+    else
+      !user_has_a_post? && post_is_private? ? false : true
+    end
   end
 
   def edit?
@@ -38,6 +43,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def user_is_owner?
+    # a priori redondant avec user_has_a_post?, to be checked
     user == @record.user
   end
 

@@ -26,7 +26,7 @@
       <!-- user can see all the posts for other users if deadline is past, unless a post has been requested as private. In this case, only users who's wrote a post in the theme can see the post -->
       <% if @theme.deadline.past? && policy(@theme).show? %>
         <%= "Theme terminé depuis le #{@theme.deadline}" %>
-        <% @posts.where(theme_id: @theme.id).each do |post| %>
+        <% @posts.each do |post| %>
           <div class="row">
             <% if policy(post).show? %>
               <h3><%= fa_icon "unlock" %> Article de <%= post.user.pseudo %></h3>
@@ -39,7 +39,7 @@
         <% end %>
       <% else %>
           <!-- user can update the post if the post exists and theadline is not past -->
-        <% if policy(@post).update? %>
+        <% if user_signed_in? && policy(@post).update?  %>
           <div class="row">
             <h3><%= @post.content %></h3>
           </div>

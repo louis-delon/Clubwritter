@@ -33,10 +33,6 @@ class ThemePolicy < ApplicationPolicy
     true
   end
 
-  def pending?
-    true
-  end
-
   private
 
   def owner_is_user?

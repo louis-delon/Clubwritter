@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   resources :themes do
     resources :posts, only: [:new, :create, :show, :edit, :destroy, :update]
     collection do
-      get 'pending'
       get 'ended'
     end
   end

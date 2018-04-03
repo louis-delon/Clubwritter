@@ -1,11 +1,16 @@
 class ThemesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: [:index, :ended]
+  # if Theme.where(:deadline.to_s < Time.now.strftime("%Y/%m/%d"))
+  if Theme.where('deadline <= ?', Time.now.strftime("%Y, %m, %d"))
+    skip_before_action :authenticate_user!, only: [:show]
+  end
+
   before_action :set_theme, only: [:show, :edit, :update, :destroy]
 
   def index
     @themes = policy_scope(Theme).sort_by { |theme| theme.deadline}
-    @themes_with_post = @themes.select do |theme|
-      !deadline_is_passed?(theme) && theme_has_a_post?(theme)
+    @pending_themes = @themes.select do |theme|
+      !deadline_is_passed?(theme)
     end
   end
 
@@ -28,20 +33,28 @@ class ThemesController < ApplicationController
   end
 
   def show
-    @posts = Post.all
     #calculate the number of day before the end of the inscription period
     @number_of_days = number_of_days_for_apply(@theme.deadline)
+    #allow to show all the post of the theme
+    @posts = Post.where(theme_id: @theme.id)
 
-    if Post.exists?(user_id: current_user.id, theme_id: @theme.id)
-      # user has already started to write a post
-      @post = Post.where(user_id: current_user.id, theme_id: @theme.id).first
-    else
-      # user has not written a post yet
-      @post = Post.new
-      @post.theme_id = @theme.id
-      @post.user_id = current_user.id
-    end
+    # if Post.exists?(user_id: current_user.id, theme_id: @theme.id)
+    #   # user has already started to write a post and has signed_in
+    #   @post = Post.where(user_id: current_user.id, theme_id: @theme.id).first
+    # else
+    #   # user has not written a post yet
+    #   @post = Post.new
+    #   @post.theme_id = @theme.id
+    #   @post.user_id = current_user.id
+    # end
+  end
 
+  def ended
+    # we show here only themes wich are ended (deadline has been past)
+    # allow to filter all themes which are ended
+    @themes = policy_scope(Theme)
+    @ended_themes = @themes.select { |theme| theme if deadline_is_passed?(theme) }
+    authorize @themes
   end
 
   def edit
@@ -58,19 +71,6 @@ class ThemesController < ApplicationController
     redirect_to themes_path, notice: "votre article a été supprimé avec succès"
   end
 
-  # allow to filter all themes which are ended
-  def ended
-    @themes = policy_scope(Theme)
-    @ended_themes = @themes.select { |theme| theme if deadline_is_passed?(theme) }
-    authorize @themes
-  end
-
-  # allow to filter all themes which are pending
-  def pending
-    @themes = policy_scope(Theme)
-    @pending_themes = @themes.select { |theme| theme if !deadline_is_passed?(theme) }
-    authorize @themes
-  end
 
 private
 
