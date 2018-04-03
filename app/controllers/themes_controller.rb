@@ -1,17 +1,32 @@
 class ThemesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :ended]
-  # if Theme.where(:deadline.to_s < Time.now.strftime("%Y/%m/%d"))
-  if Theme.where('deadline <= ?', Time.now.strftime("%Y, %m, %d"))
-    skip_before_action :authenticate_user!, only: [:show]
-  end
-
   before_action :set_theme, only: [:show, :edit, :update, :destroy]
 
+  # skip_before_action :authenticate_user!, only: [show] if blabla?
+
+
+# def blabla?
+
+#   @themes = Theme.all
+#   @ended_themes = @themes.select { |theme| theme if theme.deadline.past? }
+#   @theme = Theme.find(params[:id])
+#   true if @ended_themes.include?(@theme)
+
+# end
+
+
   def index
-    @themes = policy_scope(Theme).sort_by { |theme| theme.deadline}
-    @pending_themes = @themes.select do |theme|
-      !deadline_is_passed?(theme)
-    end
+    @themes = policy_scope(Theme).sort_by { |theme| theme.deadline }
+    @pending_themes = @themes.select { |theme| !deadline_is_passed?(theme) }
+  end
+
+  def ended
+    # we show here only themes wich are ended (deadline has been past)
+    # allow to dissociate themes which are ended from themes which are pending
+    @themes = policy_scope(Theme)
+    @ended_themes = @themes.select { |theme| theme if deadline_is_passed?(theme) }
+    # Theme.where('deadline <= ?', Time.now.strftime("%Y, %m, %d"))
+    authorize @themes
   end
 
   def new
@@ -27,7 +42,6 @@ class ThemesController < ApplicationController
     if @theme.save
       redirect_to theme_path(@theme)
     else
-      # redirect_to new_theme_path(@theme)
       render :new
     end
   end
@@ -37,24 +51,7 @@ class ThemesController < ApplicationController
     @number_of_days = number_of_days_for_apply(@theme.deadline)
     #allow to show all the post of the theme
     @posts = Post.where(theme_id: @theme.id)
-
-    # if Post.exists?(user_id: current_user.id, theme_id: @theme.id)
-    #   # user has already started to write a post and has signed_in
-    #   @post = Post.where(user_id: current_user.id, theme_id: @theme.id).first
-    # else
-    #   # user has not written a post yet
-    #   @post = Post.new
-    #   @post.theme_id = @theme.id
-    #   @post.user_id = current_user.id
-    # end
-  end
-
-  def ended
-    # we show here only themes wich are ended (deadline has been past)
-    # allow to filter all themes which are ended
-    @themes = policy_scope(Theme)
-    @ended_themes = @themes.select { |theme| theme if deadline_is_passed?(theme) }
-    authorize @themes
+    @post = Post.find_by(theme_id: @theme.id, user_id: current_user.id)
   end
 
   def edit
@@ -77,6 +74,10 @@ private
   def deadline_is_passed?(theme)
     theme.deadline.past?
   end
+
+  # def user_has_a_post?
+  #   Post.exists?(theme_id: @post.theme.id, user_id: user.id)
+  # end
 
   def theme_has_a_post?(theme)
     theme.posts.any?

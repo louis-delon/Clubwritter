@@ -19,8 +19,12 @@ class PostPolicy < ApplicationPolicy
     if user.nil?
       # user is not logged in
       post_is_private? ? false : true
-    else
+    elsif
+      user_has_a_post? && post_is_private? ? true : false
+    elsif
       !user_has_a_post? && post_is_private? ? false : true
+    else
+      true
     end
   end
 
