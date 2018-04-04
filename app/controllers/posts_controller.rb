@@ -3,7 +3,6 @@ class PostsController < ApplicationController
   before_action :set_theme, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_post, only: [:edit, :update, :destroy]
 
-
   def index
     @posts = policy_scope(Post)
     @user = current_user

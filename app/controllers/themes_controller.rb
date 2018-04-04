@@ -2,18 +2,9 @@ class ThemesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :ended]
   before_action :set_theme, only: [:show, :edit, :update, :destroy]
 
-  # skip_before_action :authenticate_user!, only: [show] if blabla?
-
-
-# def blabla?
-
-#   @themes = Theme.all
-#   @ended_themes = @themes.select { |theme| theme if theme.deadline.past? }
-#   @theme = Theme.find(params[:id])
-#   true if @ended_themes.include?(@theme)
-
-# end
-
+  # def skip_authentification
+  #  skip_before_action :authenticate_user!, only: [:show] if Theme.theme_is_finished?(@theme)
+  # end
 
   def index
     @themes = policy_scope(Theme).sort_by { |theme| theme.deadline }
@@ -74,10 +65,6 @@ private
   def deadline_is_passed?(theme)
     theme.deadline.past?
   end
-
-  # def user_has_a_post?
-  #   Post.exists?(theme_id: @post.theme.id, user_id: user.id)
-  # end
 
   def theme_has_a_post?(theme)
     theme.posts.any?
