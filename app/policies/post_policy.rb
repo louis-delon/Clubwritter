@@ -20,9 +20,10 @@ class PostPolicy < ApplicationPolicy
       # user is not logged in
       post_is_private? ? false : true
     elsif
-      user_has_a_post? && post_is_private? ? true : false
+      # if user has written a post in the theme, he can see all the thems from others writters
+      user_has_a_post? ? true : false
     elsif
-      !user_has_a_post? && post_is_private? ? false : true
+      post_is_private? && !user_has_a_post? ? false : true
     else
       true
     end

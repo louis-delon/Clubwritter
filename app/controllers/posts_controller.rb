@@ -15,6 +15,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    # to be refactored
     @post = Post.new(
       theme_id: @theme.id,
       user_id: current_user.id,
