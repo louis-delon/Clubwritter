@@ -1,11 +1,16 @@
 class PostsController < ApplicationController
 
-  before_action :set_theme, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :set_theme, only: [:new, :create, :show, :edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy, :show]
+  skip_before_action :authenticate_user!, only: [:show]
 
   def index
     @posts = policy_scope(Post)
     @user = current_user
+  end
+
+  def show
+    authorize @post
   end
 
   def new
@@ -53,8 +58,7 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    #allow to display a post only if the post belongs to current_user
-    @post = Post.where(theme_id: @theme.id, user_id: current_user.id).first
+    @post = Post.find(params[:id])
   end
 
   def post_params

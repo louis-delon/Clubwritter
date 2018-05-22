@@ -27,13 +27,11 @@
       <% if @theme.deadline.past? && policy(@theme).show? %>
         <%= "Theme terminé depuis le #{@theme.deadline}" %>
         <% @posts.each do |post| %>
-          <div class="row">
-              <% raise %>
+          <div class="row"
             <% if policy(post).show? %>
               <h3><%= fa_icon "unlock" %> Article de <%= post.user.pseudo %></h3>
-              <p><%= post.content %></p>
+              <p><%= link_to "lire l'article", theme_post_path(@theme, post) %></p>
             <% else %>
-
               <h3><%= fa_icon "lock" %> Article de <%= post.user.pseudo %></h3>
               <p> Ce contenu est privé, seuls les utilisateurs ayant écrit dans le thème sont authorisés à lire l'article</p>
             <% end %>

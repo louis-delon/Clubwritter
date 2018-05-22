@@ -17,15 +17,20 @@ class PostPolicy < ApplicationPolicy
     # false if the post is private and current user has not published a
     # post in the theme, true if post is not private
     if user.nil?
+
       # user is not logged in
       post_is_private? ? false : true
-    elsif
-      # if user has written a post in the theme, he can see all the thems from others writters
-      user_has_a_post? ? true : false
-    elsif
-      post_is_private? && !user_has_a_post? ? false : true
     else
-      true
+      # if user signed in,
+      # if user has written a post in the theme return true else
+      if user_has_a_post?
+        true
+      # if post is private and user has not a post in the theme return false
+      elsif !post_is_private?
+        true
+      elsif post_is_private?
+        false
+      end
     end
   end
 

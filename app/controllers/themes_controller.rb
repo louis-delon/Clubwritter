@@ -1,10 +1,6 @@
 class ThemesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :ended]
+  skip_before_action :authenticate_user!, only: [:index, :ended, :show]
   before_action :set_theme, only: [:show, :edit, :update, :destroy]
-
-  # def skip_authentification
-  #  skip_before_action :authenticate_user!, only: [:show] if Theme.theme_is_finished?(@theme)
-  # end
 
   def index
     @themes = policy_scope(Theme).sort_by { |theme| theme.deadline }
@@ -42,7 +38,7 @@ class ThemesController < ApplicationController
     @number_of_days = number_of_days_for_apply(@theme.deadline)
     #allow to show all the post of the theme
     @posts = Post.where(theme_id: @theme.id)
-    @post = Post.find_by(theme_id: @theme.id, user_id: current_user.id)
+    # @post = Post.find_by(theme_id: @theme.id, user_id: current_user.id)
   end
 
   def edit
