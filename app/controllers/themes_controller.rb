@@ -38,7 +38,9 @@ class ThemesController < ApplicationController
     @number_of_days = number_of_days_for_apply(@theme.deadline)
     #allow to show all the post of the theme
     @posts = Post.where(theme_id: @theme.id)
-    # @post = Post.find_by(theme_id: @theme.id, user_id: current_user.id)
+    if user_signed_in?
+      @post = Post.find_by(theme_id: @theme.id, user_id: current_user.id)
+    end
   end
 
   def edit

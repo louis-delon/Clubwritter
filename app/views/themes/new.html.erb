@@ -13,7 +13,7 @@
       </p>
 
       <p>
-        <%= f.input :category_id, label: "Sélectionnez votre catégorie", collection: @categories %>
+        <%= f.input :category, input_html: {class:'select2'}, placeholder: "séléctionez votre catégorie", collection: @categories, id: 'select2' %>
       </p>
 
       <p>

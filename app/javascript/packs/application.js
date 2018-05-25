@@ -6,8 +6,11 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
-
+//= require select2_simple_form
 import 'bootstrap';
 
 import { loadDynamicBannerText } from '../components/banner';
 loadDynamicBannerText();
+
+import '../components/select2.js';
+
