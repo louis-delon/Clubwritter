@@ -6,7 +6,8 @@ a:hover {
  text-decoration: none;
 }
 
-.theme__box__with__photo {
+
+.theme__card {
   height: 300px;
   width: 375px;
   margin-right: 3px;
@@ -15,38 +16,29 @@ a:hover {
   transition: all 0.3s ease;
   background: white;
   padding-left: 7px;
+  transition: $transition;
+  &:hover {
+    color: $dark;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);
+
+    // .theme__card__filter {
+    //   transition: all 0.2s;
+    //   opacity: 0.5;
+    // }
+  }
 }
 
-.theme__box__without__photo {
-  height: 300px;
-  width: 375px;
-  padding: 0px 10px;
-  display: block;
-  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  background: white;
-  padding-left: 7px;
-}
-
-.theme__box__with__photo h1 {
+.theme__card h1 {
   font-size: 18px;
   color: black;
 }
 
-.theme__box__with__photo p{
+.theme__card p{
   font-size: 14px;
   color: $gray;
 }
 
-.theme__box__without__photo h1 {
-  font-size: 18px;
-  color: black;
-}
-
-.theme__box__without__photo p{
-  font-size: 14px;
-  color: $gray;
-}
 
 .filter__theme {
   display: flex;

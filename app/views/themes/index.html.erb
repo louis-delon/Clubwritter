@@ -6,14 +6,14 @@
       <div class=" col-xs-12 col-sm-6 col-md-4 theme__box">
         <!-- only theme which are still ongoing or past themes which contains at least one post are displayed -->
         <% if theme.photo.present? %>
-          <div class="theme__box__with__photo">
+          <div class="theme__card">
             <%= render 'theme-card', theme: theme %>
             <p><%= cl_image_tag theme.photo, height: 140, width: 370, crop: :fill %></p>
             <p>Date limite de soummission: <%= theme.deadline.strftime('%d/%m/%Y') %></p><br>
           </div>
 
         <% else %>
-          <div class="theme__box__without__photo">
+          <div class="theme__card">
              <%= render 'theme-card', theme: theme %>
              <p>Date limite de soummission: <%= theme.deadline.strftime('%d/%m/%Y') %></p><br>
           </div>
