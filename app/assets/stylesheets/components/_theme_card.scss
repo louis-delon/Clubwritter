@@ -1,7 +1,60 @@
-.title__card {
-
+.theme__box {
+  margin-bottom: 10px;
 }
 
-.theme__card {
+.theme__box__with__photo {
+  height: 300px;
+  width: 375px;
+  margin-right: 3px;
+  display: block;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background: white;
+  padding-left: 7px;
+}
 
+.theme__box__without__photo {
+  height: 300px;
+  width: 375px;
+  padding: 0px 10px;
+  display: block;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background: white;
+  padding-left: 7px;
+}
+
+.theme__box__with__photo h1 {
+  font-size: 18px;
+  color: black;
+}
+
+.theme__box__with__photo p{
+  font-size: 14px;
+  color: $gray;
+}
+
+.theme__box__without__photo h1 {
+  font-size: 18px;
+  color: black;
+}
+
+.theme__box__without__photo p{
+  font-size: 14px;
+  color: $gray;
+}
+
+.filter__theme {
+  display: flex;
+}
+
+.filter__theme p{
+  margin-right: 30px;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.filter__theme a{
+ color: black;
+ font-weight: 450;
 }
