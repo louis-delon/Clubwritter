@@ -1,10 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="filter__theme col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-      <p><%= link_to "EN COURS", themes_path %></p>
-      <p><%= link_to "PUBLIES", ended_themes_path %></p>
-
+      <div class="btn-group" role="group" aria-label="...">
+        <%= link_to((themes_path), class: 'btn btn-default') do %>
+          En cours
+        <% end %>
+        <%= link_to((ended_themes_path), class: 'btn btn-default') do %>
+          Publiés
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

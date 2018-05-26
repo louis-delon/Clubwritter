@@ -1,18 +1,21 @@
 
 <div class="container ">
-  <%= render 'theme-navbar'%>
+  <div class="theme__navabar"><%= render 'theme-navbar'%></div>
   <div class="row ">
     <% @pending_themes.each do |theme| %>
       <div class=" col-xs-12 col-sm-6 col-md-4">
         <!-- only theme which are still ongoing or past themes which contains at least one post are displayed -->
         <% if theme.photo.present? %>
           <div class=" theme__box__with__photo">
-            <%= render 'theme-without-photo-card', theme: theme %>
+            <%= render 'theme-card', theme: theme %>
+            <p><%= cl_image_tag theme.photo, height: 140, width: 370, crop: :fill %></p>
+            <p>Date limite de soummission: <%= theme.deadline.strftime('%d/%m/%Y') %></p><br>
           </div>
 
         <% else %>
           <div class=" theme__box__without__photo">
-             <%= render 'theme-with-photo-card', theme: theme %>
+             <%= render 'theme-card', theme: theme %>
+             <p>Date limite de soummission: <%= theme.deadline.strftime('%d/%m/%Y') %></p><br>
           </div>
 
         <% end %>

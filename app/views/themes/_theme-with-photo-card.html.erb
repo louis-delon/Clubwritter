@@ -1,14 +1,4 @@
-<%= link_to  theme_path(theme) do %>
-  <h1><%= "#{theme.name}"%></h1>
-  <p>Thème proposé par</p>
-    <% if theme.user.avatar.present? %>
-      <% user_avatar = theme.user.avatar %>
-      <p><%= cl_image_tag user_avatar, crop: :thumb, gravity: :face, width: 30, height: 30 %></p>
-  <!-- user hasn't loaded a picture for his avatar yet-->
-    <% else %>
-      <% user_avatar = "default-avatar.png" %>
-      <p><%= image_tag user_avatar, crop: :thumb, gravity: :face, width: 30, height: 30 %></p>
-    <% end %>
-  <p><%= theme.user.pseudo %></p>
-  <p>Date limite de soummission: <%= theme.deadline.strftime('%d/%m/%Y') %></p><br>
-<% end %>
+<section class="theme__card">
+  <%= render "theme-card", theme: theme %>
+</section>
+

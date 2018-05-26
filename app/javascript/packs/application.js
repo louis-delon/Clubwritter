@@ -13,4 +13,5 @@ import { loadDynamicBannerText } from '../components/banner';
 loadDynamicBannerText();
 
 import '../components/select2.js';
+import '../components/tab.js';
 

@@ -1,0 +1,19 @@
+<%= link_to  theme_path(theme) do %>
+    <p>Thème proposé par</p>
+      <% if theme.user.avatar.present? %>
+        <% user_avatar = theme.user.avatar %>
+        <div>
+          <span><%= cl_image_tag user_avatar, crop: :thumb, gravity: :face, width: 30, height: 30, class: "avatar__user__card" %></span>
+          <span><%= theme.user.pseudo %></span>
+        </div>
+    <!-- user hasn't loaded a picture for his avatar yet-->
+      <% else %>
+        <% user_avatar = "default-avatar.png" %>
+        <div>
+          <span class="avatar__user__card"><%= image_tag user_avatar, crop: :thumb, gravity: :face, width: 30, height: 30, class: "avatar__user__card" %></span>
+          <span><%= theme.user.pseudo %></span>
+        </div>
+      <% end %>
+<% end %>
+
+<h1><strong><%= "#{theme.name}"%></strong></h1>
