@@ -37,7 +37,7 @@
 <type label="SET" length="1" sql="SET" quote=""/>
 <type label="Bit" length="0" sql="bit" quote=""/>
 </group>
-</datatypes><table x="1125" y="649" name="Categories">
+</datatypes><table x="1094" y="699" name="Categories">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -48,7 +48,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1277" y="454" name="comments">
+<table x="1239" y="339" name="comments">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -57,18 +57,20 @@
 <default>NULL</default></row>
 <row name="post_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default></row>
+<default>NULL</default><relation table="Posts" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="1091" y="302" name="votes">
+<table x="1243" y="187" name="votes">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="vote_id" null="1" autoincrement="0">
+<row name="post_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default></row>
+<default>NULL</default><relation table="Posts" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
