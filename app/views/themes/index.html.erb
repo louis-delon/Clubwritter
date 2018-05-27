@@ -1,6 +1,8 @@
 
 <div class="container ">
-  <div class="theme__navbar"><%= render 'theme-navbar'%></div>
+  <div class="theme__navbar">
+    <%= render 'theme-navbar'%>
+  </div>
   <div class="row ">
     <% @pending_themes.each do |theme| %>
       <div class=" col-xs-12 col-sm-6 col-md-4 theme__box">
@@ -17,7 +19,6 @@
              <%= render 'theme-card', theme: theme %>
              <p>Date limite de soummission: <%= theme.deadline.strftime('%d/%m/%Y') %></p><br>
           </div>
-
         <% end %>
       </div>
     <% end %>

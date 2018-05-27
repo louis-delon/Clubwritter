@@ -1,10 +1,41 @@
-<div class="banner"=>
-  <div class="banner__content">
-    <h1>FTERO</h1>
-    <p>
-      <!-- allow to use type.js to insert dynamic text-->
-      <span id="banner-typed-text"></span>
-    </p>
-    <%= link_to 'Entrer', themes_path, class: "btn btn-primary btn-lg" %>
+<section>
+  <div class="banner">
+    <div>
+      <h1>FTERO</h1>
+      <p>
+        <!-- allow to use type.js to insert dynamic text-->
+        <span id="banner-typed-text"></span>
+      </p>
+      <span><%= link_to 'Entrer', themes_path, class: "btn btn-primary btn-lg" %></span>
+    </div>
   </div>
-</div>
+  <div class="container">
+    <div>
+      <h2 id="tuto__title">Comment ça marche?</h2>
+    </div>
+    <div clas="row">
+      <div class="tuto col-xs-12 col-sm-6 col-md-4">
+        <div class="tuto__card">
+          <h3 >Publiez un thème</h3>
+          <p>Vous pouvez publier un thème qui vous inspire et sur lequel vous souhaitez écrire. Tous les membres de Ftero peuvent écrire un article sur le thème que vus publiez</p>
+        </div>
+      </div>
+      <div class="tuto col-xs-12 col-sm-6 col-md-4">
+          <div class="tuto__card">
+            <h3 >Donnez une date limite de rendu des articles</h3>
+            <p>Ceux qui sont inspirés par votre thème peuvent écrire un texte. Ceux qui souhaitent par votre thème peuvent écrire un texte pour partager leurs écrits. </p>
+          </div>
+      </div>
+      <div class="tuto col-xs-12 col-sm-6 col-md-4">
+        <div class="tuto__card">
+          <h3 >Découvrez les articles écrits par tous les contributeurs du thème</h3>
+          <p>Une fois la deadline passée, vous pouvez lire chaque article écrit sur votre thème</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2 id="tuto__title">Partagez vos écrits sur les thèmes proposés</h2>
+      <p>Vous pouvez publier un thème sur lequel vous souhaitez écrire. Tous ceux qui sont inspirés par votre thème peuvent écrire un texte pour partager leurs écrits</p>
+    </div>
+  </div>
+</section>

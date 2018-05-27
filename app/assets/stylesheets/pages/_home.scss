@@ -28,3 +28,27 @@
 #body {
   padding-top: 70px;
 }
+
+.tuto {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  padding-top: 50px;
+}
+
+#tuto__title {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.tuto__card {
+  height: 300px;
+  width: 375px;
+  margin-right: 15px;
+  display: block;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background: white;
+  padding-left: 7px;
+  text-align: left;
+}
