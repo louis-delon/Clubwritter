@@ -18,12 +18,12 @@
       <% @user.posts.each do |post| %>
         <div class="col-xs-12 col-sm-6 col-md-4">
           <% if post.theme.photo.present? %>
-            <div class=" theme__box__with__photo">
+            <div class=" theme__card">
               <h1><%= link_to post.theme.name, theme_path(post.theme) %> - (<%= link_to post.theme.user.pseudo, user_path(post.theme.user) %>)</h1>
               <br>
             </div>
           <% else %>
-            <div class=" theme__box__without__photo">
+            <div class=" theme__card">
               <h1><%= link_to post.theme.name, theme_path(post.theme) %> - (<%= link_to post.theme.user.pseudo, user_path(post.theme.user) %>)</h1>
             </div>
           <% end %>
