@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'comments/index'
+
+  get 'comments/create'
+
   get 'categories/index'
 
   devise_for :users
