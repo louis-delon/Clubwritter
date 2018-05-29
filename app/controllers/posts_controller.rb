@@ -24,7 +24,6 @@ class PostsController < ApplicationController
     @post = Post.new(
       theme_id: @theme.id,
       user_id: current_user.id,
-      category_id: @theme.category_id,
       content: params[:post][:content]
       )
     authorize @post
@@ -67,7 +66,6 @@ class PostsController < ApplicationController
         :content,
         :user_id,
         :theme_id,
-        :category_id,
         :private,
       )
   end

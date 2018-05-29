@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'categories/new'
+
+  get 'categories/create'
+
+  get 'categories/update'
+
+  get 'categories/destroy'
+
   get 'comments/index'
 
   get 'comments/create'
