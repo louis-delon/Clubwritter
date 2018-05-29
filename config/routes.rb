@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     root to: "users#index"
   end
 
-
   devise_for :users
   root to: 'pages#home'
 

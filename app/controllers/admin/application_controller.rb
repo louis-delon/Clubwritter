@@ -10,7 +10,7 @@ module Admin
 
     def authenticate_admin
       # TODO Add authentication logic here.
-      redirect_to '/', alert: 'vous n\'etes pas authorisés à vous rendre sur cette page' unless current_seller.admin?
+      redirect_to '/', alert: 'vous n\'etes pas authorisés à vous rendre sur cette page' unless current_user.admin?
     end
 
     # Override this value to specify the number of elements to display at a time
