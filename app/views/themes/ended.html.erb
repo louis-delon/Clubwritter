@@ -7,14 +7,14 @@
         <!-- only theme which are still ongoing or past themes which contains at least one post are displayed -->
         <% if theme.photo.present? %>
           <div class=" theme__card">
-            <%= render 'theme-card', theme: theme %>
+            <%= render 'shared/theme-card', theme: theme %>
             <p>Date de publication: <%= theme.deadline.strftime('%d/%m/%Y') %></p><br>
             <p><%= cl_image_tag theme.photo, height: 140, width: 370, crop: :fill %></p>
           </div>
 
         <% else %>
           <div class=" theme__card">
-            <%= render 'theme-card', theme: theme %>
+            <%= render 'shared/theme-card', theme: theme %>
             <p>Date de publication: <%= theme.deadline.strftime('%d/%m/%Y') %></p><br>
           </div>
         <% end %>

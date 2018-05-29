@@ -1,4 +1,5 @@
 <section>
+
   <div class="banner">
     <div>
       <h1>FTERO</h1>
@@ -6,9 +7,10 @@
         <!-- allow to use type.js to insert dynamic text-->
         <span id="banner-typed-text"></span>
       </p>
-      <span><%= link_to 'Entrer', themes_path, class: "btn btn-primary btn-lg" %></span>
+      <span><%= link_to 'Rejoignez la communauté', themes_path, class: "btn btn-primary btn-lg" %></span>
     </div>
   </div>
+
   <div class="container">
     <div>
       <h2 class="tuto__title">Comment ça marche?</h2>
@@ -16,8 +18,8 @@
     <div clas="row">
       <div class="tuto col-xs-12 col-sm-6 col-md-4">
         <div class="tuto__card">
-          <h3 >Publiez un sujet</h3>
-          <p>Vous pouvez publier une citation, phrase, image sur un sujet qui vous inspire. Tous les membres de Ftero peuvent écrire un article sur le thème que vous avez publié</p>
+          <h3>Proposez un sujet d'écriture</h3>
+          <p>Le sujet que vous choisissez pour votre thème est libre. Vous pouvez publier une citation, une phrase, une image sur lequel vous souhaitez vous exprimer. Tous les membres de Ftero peuvent écrire un article sur le thème que vous avez publié</p>
         </div>
       </div>
       <div class="tuto col-xs-12 col-sm-6 col-md-4">
@@ -33,13 +35,29 @@
         </div>
       </div>
     </div>
-    <!-- <div clas="row">
-      <div class="tuto col-xs-12 col-sm-12 col-md-12">
-        <div>
-          <h2 class="tuto__title">Pourquoi Ftero</h2>
-          <p>Ftero est un site de partage, de découverte et de transmission. Trouvez des thèmes qui vous insiprent ou publiez en et partagez le récit des contributeurs de votre thème</p>
-        </div>
+    <div>
+      <h2 class="tuto__title">Les thèmes en cours</h2>
+    </div>
+
+    <div clas="row">
+    <% @pending_themes.each do |theme| %>
+      <div class="tuto col-xs-12 col-sm-6 col-md-4">
+        <% if theme.photo.present? %>
+          <div class="theme__card">
+            <%= render 'shared/theme-card', theme: theme %>
+            <p><%= cl_image_tag theme.photo, height: 140, width: 370, crop: :fill %></p>
+            <p>Date limite de soummission: <%= theme.deadline.strftime('%d/%m/%Y') %></p><br>
+          </div>
+
+        <% else %>
+          <div class="theme__card">
+             <%= render 'shared/theme-card', theme: theme %>
+             <p>Date limite de soummission: <%= theme.deadline.strftime('%d/%m/%Y') %></p><br>
+          </div>
+        <% end %>
       </div>
-    </div> -->
+      <% end %>
+    </div>
   </div>
+
 </section>

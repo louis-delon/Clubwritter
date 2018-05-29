@@ -81,5 +81,4 @@ private
   def theme_params
     params.require(:theme).permit(:name, :deadline, :category_id, :user_id, :photo)
   end
-
 end
