@@ -146,10 +146,6 @@
 <row name="created_at" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
-<row name="category_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="Categories" row="id" />
-</row>
 <row name="user_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="Users" row="id" />

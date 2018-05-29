@@ -1,18 +1,15 @@
 Rails.application.routes.draw do
 
-  get 'categories/new'
+  namespace :admin do
+    resources :users
+    resources :categories
+    resources :comments
+    resources :posts
+    resources :themes
 
-  get 'categories/create'
+    root to: "users#index"
+  end
 
-  get 'categories/update'
-
-  get 'categories/destroy'
-
-  get 'comments/index'
-
-  get 'comments/create'
-
-  get 'categories/index'
 
   devise_for :users
   root to: 'pages#home'

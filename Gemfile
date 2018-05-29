@@ -25,6 +25,7 @@ gem 'carrierwave', '~> 1.2'
 gem 'awesome_print'
 gem 'bootstrap', '~> 4.1.1'
 gem 'select2_simple_form', github: 'lndl/select2_simple_form', tag: '0.7.3'
+gem "administrate"
 
 group :development do
   gem 'web-console', '>= 3.3.0'
