@@ -27,16 +27,14 @@ a:hover {
     //   opacity: 0.5;
     // }
   }
-}
-
-.theme__card h1 {
-  font-size: 18px;
-  color: black;
-}
-
-.theme__card p{
-  font-size: 14px;
-  color: $gray;
+  h1 {
+    font-size: 18px;
+    color: black;
+  }
+  p{
+    font-size: 14px;
+    color: $gray;
+  }
 }
 
 

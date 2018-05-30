@@ -1,6 +1,8 @@
 
 <div class="container ">
-  <div class="theme__navbar"><%= render 'theme-navbar'%></div>
+  <div class="theme__navbar">
+    <%= render 'theme-navbar'%>
+  </div>
   <div class="row ">
     <% @ended_themes.each do |theme| %>
       <div class=" col-xs-12 col-sm-6 col-md-4 theme__box">
@@ -8,14 +10,14 @@
         <% if theme.photo.present? %>
           <div class=" theme__card">
             <%= render 'shared/theme-card', theme: theme %>
-            <p>Date de publication: <%= theme.deadline.strftime('%d/%m/%Y') %></p><br>
-            <p><%= cl_image_tag theme.photo, height: 140, width: 370, crop: :fill %></p>
+            <p>Date de publication: <%= theme.deadline.strftime('%d/%m/%Y') %></p>
+            <div><%= cl_image_tag theme.photo, height: 140, width: 370, crop: :fill %></div>
           </div>
 
         <% else %>
           <div class=" theme__card">
             <%= render 'shared/theme-card', theme: theme %>
-            <p>Date de publication: <%= theme.deadline.strftime('%d/%m/%Y') %></p><br>
+            <p>Date de publication: <%= theme.deadline.strftime('%d/%m/%Y') %></p>
           </div>
         <% end %>
       </div>

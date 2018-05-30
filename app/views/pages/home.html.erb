@@ -1,5 +1,4 @@
 <section>
-
   <div class="banner">
     <div>
       <h1>FTERO</h1>
@@ -12,52 +11,37 @@
   </div>
 
   <div class="container">
-    <div>
-      <h2 class="tuto__title">Comment ça marche?</h2>
+    <div class="tuto__title">
+      <h2 >Partagez vos écrits avec la communauté</h2>
     </div>
     <div clas="row">
       <div class="tuto col-xs-12 col-sm-6 col-md-4">
         <div class="tuto__card">
           <h3>Publiez un thème d'écriture</h3>
-          <p>Le sujet que vous choisissez pour votre thème est libre. Vous pouvez publier une citation, une phrase, une image sur lequel vous souhaitez vous exprimer. Tous les membres de Ftero peuvent écrire un article sur le thème que vous avez publié</p>
+          <p>Le sujet que vous choisissez pour votre thème est libre. Vous pouvez publier une citation, une phrase, une image qui vous inspire et sur lequel vous souhaitez partager un écrit. Tous les membres de Ftero peuvent participer à votre thème et écrire un article sur le sujet</p>
         </div>
       </div>
       <div class="tuto col-xs-12 col-sm-6 col-md-4">
-          <div class="tuto__card">
-            <h3 >Donnez une date limite de rendu des articles</h3>
-            <p>Chaque contributeur de votre thème peut ecrire  et améliorer son article jusqu'à la date butoire</p>
-          </div>
+        <div class="tuto__card">
+          <h3 >Donnez une date limite de rendu des articles</h3>
+          <p>Chaque contributeur de votre thème peut ecrire  et améliorer son article jusqu'à la date butoire. Les contributeurs peuvent choisir de publier leurs écrits en mode public ou privés (visibles par tout le monde ou uniquement par les autres contributeurs du thème)</p>
+        </div>
       </div>
       <div class="tuto col-xs-12 col-sm-6 col-md-4">
         <div class="tuto__card">
           <h3>Découvrez les articles écrits par tous les contributeurs du thème</h3>
-          <p>Une fois la deadline passée, tous les articles sont publiés.</p>
+          <p>Une fois la deadline passée, tous les articles sont publiés et chaque contributeur peut prendre connaissance des écrits de chacun.</p>
         </div>
       </div>
     </div>
-    <div>
-      <h2 class="tuto__title">Les thèmes en cours</h2>
-    </div>
-
     <div clas="row">
-    <% @pending_themes.each do |theme| %>
-      <div class="tuto col-xs-12 col-sm-6 col-md-4">
-        <% if theme.photo.present? %>
-          <div class="theme__card">
-            <%= render 'shared/theme-card', theme: theme %>
-            <p><%= cl_image_tag theme.photo, height: 140, width: 370, crop: :fill %></p>
-            <p>Date limite de soummission: <%= theme.deadline.strftime('%d/%m/%Y') %></p><br>
-          </div>
-
-        <% else %>
-          <div class="theme__card">
-             <%= render 'shared/theme-card', theme: theme %>
-             <p>Date limite de soummission: <%= theme.deadline.strftime('%d/%m/%Y') %></p><br>
-          </div>
-        <% end %>
+      <div class=" col-xs-12 col-sm-12 col-md-12">
+        <div class="tuto__title">
+          <h2 >Les thèmes en cours</h2>
+        </div>
       </div>
-      <% end %>
     </div>
+    <%= render 'shared/pending' %>
   </div>
 
 </section>
