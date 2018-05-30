@@ -1,16 +1,19 @@
 class CategoriesController < ApplicationController
-  def index
-  end
 
-  def new
-  end
+  # def index
+  #   @categories = Policy_scope(Category)
+  # end
 
-  def create
-  end
+  # def new
+  #   @category = Category.new
+  # end
 
-  def update
-  end
+  # def create
+  #   @category = Category.new(params[:name])
+  # end
 
-  def destroy
-  end
+  # def destroy
+  #   @category = Category.find(params[:id])
+  #   @category.destroy
+  # end
 end
