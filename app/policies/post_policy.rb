@@ -39,7 +39,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def update?
-    user_is_owner? && !theme_is_published? && user_has_a_post?
+    user_is_owner?
   end
 
   def destroy?

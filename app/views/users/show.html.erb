@@ -5,13 +5,16 @@
       <div class= "col-xs-12 col-sm-12 col-lg-12">
         <% if policy(@user).update? %>
           <div class="user__profile__card">
-            <h1>Mon profil (<%= @user.pseudo.capitalize %>)</h1>
-            <%= render 'shared/avatar_picture' %>
+           <span>Mon profil (<%= @user.pseudo.capitalize %>)</span><br>
+           <span>Inscrit depuis le <%= @user.created_at.strftime('%d/%m/%Y')  %> </span><br>
+            <span><%= render 'shared/avatar_picture' %></span>
           </div>
+          <div>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-              Editer mon profil
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+              Mettre à jour mon profil
             </button>
+          </div>
 
         <% else %>
           <h1>Profil de <%= @user.pseudo.capitalize %></h1>
@@ -74,9 +77,17 @@
               <%= f.input :avatar, label: "Ajoutez un avatar" %>
               <%= f.input :avatar_cache, as: :hidden %>
             <% end %>
+
+            <h3>Changer de mot de passe</h3>
             <br>
-            <br>
-            <%= f.button :submit, "mettre à jour le profil" %>
+            <%= f.input :password, label: "Nouveau mot de passe", autocomplete: "off", hint: "Ne rien remplir si vous ne souhaitez pas changer votre mot de passe", required: false %>
+            <%= f.input :password_confirmation, label: "Confirmez votre nouveau mot de passe", required: false %>
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, "Mettre à jour" %>
+            </div>
+
           <% end %>
         </div>
       </div>

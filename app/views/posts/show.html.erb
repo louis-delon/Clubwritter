@@ -4,4 +4,8 @@
   <h1><%= "Article de #{@post.user.pseudo}" %></h1>
   <p><%= @post.content %></p>
 
+  <% if policy(@post).update? %>
+    <%= link_to "Mettre à jour", edit_theme_post_path(@post) %>
+  <% end %>
+
 </section>
