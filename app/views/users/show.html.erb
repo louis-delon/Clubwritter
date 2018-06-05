@@ -62,35 +62,42 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Mettre à jour mon profil</h4>
       </div>
+      <%= simple_form_for (@user) do |f| %>
       <div class="modal-body">
-
+        <%= render "shared/avatar_picture"%>
+        <%= f.input :avatar, hint: "télécharger une nouvelle photo pour changer d'avatar" %>
+        <%= f.input :avatar_cache, as: :hidden %>
+        <%= f.input :pseudo, label: "Pseudo" %>
       </div>
       <div class="modal-footer ">
+        <%
+=begin %>
         <div class="user__form">
-          <%= simple_form_for (@user) do |f| %>
-            <%= f.input :pseudo, label: "Pseudo" %>
-            <br>
-            <% if @user.avatar.present? %>
-              <%= cl_image_tag @user.avatar, height: 75, width: 100, crop: :fill, style: "border-radius: 50%" %>
-              <%= f.input :avatar, label: "Changer mon avatar" %>
-            <% else %>
-              <%= f.input :avatar, label: "Ajoutez un avatar" %>
-              <%= f.input :avatar_cache, as: :hidden %>
-            <% end %>
-
-            <h3>Changer de mot de passe</h3>
-            <br>
-            <%= f.input :password, label: "Nouveau mot de passe", autocomplete: "off", hint: "Ne rien remplir si vous ne souhaitez pas changer votre mot de passe", required: false %>
-            <%= f.input :password_confirmation, label: "Confirmez votre nouveau mot de passe", required: false %>
-            </div>
-
-            <div class="form-actions">
-              <%= f.button :submit, "Mettre à jour" %>
-            </div>
-
-          <% end %>
+          <h3>Changer de mot de passe</h3>
+          <%= f.input :reset_password_token, as: :hidden %>
+          <%= f.full_error :reset_password_token %>
+          <%= f.input :password, label: "Nouveau mot de passe", autocomplete: "off", hint: "Ne rien remplir si vous ne souhaitez pas changer votre mot de passe", required: false %>
+          <%= f.input :password_confirmation, label: "Confirmez votre nouveau mot de passe", required: false %>
+        </div>
+       <%
+=end    %>
+        <div class="form-actions">
+          <%= f.button :submit, "Mettre à jour" %>
         </div>
       </div>
+      <% end %>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
