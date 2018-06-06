@@ -24,6 +24,7 @@ class ThemesController < ApplicationController
 
   def create
     @theme = Theme.new(theme_params)
+    @categories = Category.all.sort_by { |category| category.name}
     @theme.user = current_user
     authorize @theme
     if @theme.save
@@ -79,6 +80,6 @@ private
   end
 
   def theme_params
-    params.require(:theme).permit(:name, :deadline, :category_id, :user_id, :photo)
+    params.require(:theme).permit(:name, :deadline, :photo_cache, :category_id, :user_id, :photo)
   end
 end
