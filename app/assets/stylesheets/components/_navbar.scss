@@ -81,6 +81,11 @@
   margin-bottom: 20px;
 }
 
+.btn-focus {
+  & a:focus {
+      background-color: #FFCC66;
+  }
+}
 
 
 

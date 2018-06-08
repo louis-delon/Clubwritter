@@ -6,7 +6,15 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
+
+
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+//= require turbolinks
+//= require rails-ujs
 //= require select2_simple_form
+
 import 'bootstrap';
 
 import { loadDynamicBannerText } from '../components/banner';
