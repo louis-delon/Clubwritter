@@ -14,7 +14,8 @@
       <h1><strong><%= truncate(theme.name, length: 65) %></strong></h1>
     <% end %>
     <div class="theme__contributors">
-      <%= "#{theme.posts.length} contributeurs"%>
+      <%= "#{theme.posts.length}"%>
+      <%= icon('fas', 'pencil-alt') %>
     </div>
   <% end %>
 </section>
