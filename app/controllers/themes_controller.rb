@@ -12,7 +12,6 @@ class ThemesController < ApplicationController
     # allow to dissociate themes which are ended from themes which are pending
     @themes = policy_scope(Theme)
     @ended_themes = @themes.select { |theme| theme if deadline_is_passed?(theme) }
-    # Theme.where('deadline <= ?', Time.now.strftime("%Y, %m, %d"))
     authorize @themes
   end
 

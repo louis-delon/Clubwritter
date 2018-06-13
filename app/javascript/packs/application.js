@@ -16,10 +16,9 @@
 //= require select2_simple_form
 
 import 'bootstrap';
-
 import { loadDynamicBannerText } from '../components/banner';
 loadDynamicBannerText();
-
 import '../components/select2.js';
 import '../components/tab.js';
+
 

@@ -1,24 +1,5 @@
 
 <div class="container ">
-    <%= render 'theme-navbar'%>
-  <div class="row ">
-    <% @ended_themes.each do |theme| %>
-      <div class=" col-xs-12 col-sm-6 col-md-4 theme__box">
-        <!-- only theme which are still ongoing or past themes which contains at least one post are displayed -->
-        <% if theme.photo.present? %>
-          <div class=" theme__card">
-            <%= render 'shared/theme-card', theme: theme %>
-            <p>Date de publication: <%= theme.deadline.strftime('%d/%m/%Y') %></p>
-            <div><%= cl_image_tag theme.photo, height: 140, width: 370, crop: :fill %></div>
-          </div>
-
-        <% else %>
-          <div class=" theme__card">
-            <%= render 'shared/theme-card', theme: theme %>
-            <p>Date de publication: <%= theme.deadline.strftime('%d/%m/%Y') %></p>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+  <%= render 'theme-navbar'%>
+  <%= render 'shared/ended' %>
 </div>

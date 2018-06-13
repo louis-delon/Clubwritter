@@ -1,36 +1,33 @@
 <div class="container">
-  <div class="row">
-    <div>
+  <div class="row theme__details">
+    <div class=" col-xs-12 col-sm-12 col-md-12 ">
       <h1><%= "#{@theme.name}" %></h1>
 
       <% if @theme.photo.present? %>
-        <p><%= cl_image_tag @theme.photo, height: 150, width: 200, crop: :fill %></p>
+        <%= cl_image_tag @theme.photo, height: 150, width: 200, crop: :fill %>
       <% end %>
-
       <% if policy(@theme).edit? %>
         <%= link_to(edit_theme_path(@theme), class: "btn btn--secondary") do %>
-          <%= fa_icon "edit" %>Edit
+          <%= fa_icon "edit" %>Mettre à jour
         <% end %>
       <% end %>
 
       <% if policy(@theme).destroy?%>
         <%= link_to(theme_path(@theme), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
-          <%= fa_icon "remove" %>Delete
+          <%= fa_icon "remove" %>Supprimer
         <% end %>
       <% end %>
 
       <h2><%= "Thème proposé par #{@theme.user.pseudo}"%></h2>
-      <p><%= @theme.category.name %></p>
-      <br>
-      <br>
+      <p><%= @theme.category.name %></p><br><br>
       <!-- user can see all the posts for other users if deadline is past, unless a post has been requested as private. In this case, only users who's wrote a post in the theme can see the post -->
       <% if @theme.deadline.past? && policy(@theme).show? %>
-        <%= "Theme terminé depuis le #{@theme.deadline}" %>
+        <%= "Theme terminé depuis le #{@theme.deadline}" %><br>
         <% @posts.each do |post| %>
           <div class="row"
             <% if policy(post).show? %>
               <h3><%= fa_icon "unlock" %> Article de <%= post.user.pseudo %></h3>
-              <p><%= link_to "lire l'article", theme_post_path(@theme, post) %></p>
+              <%= link_to "lire l'article", theme_post_path(@theme, post) %>
             <% else %>
               <h3><%= fa_icon "lock" %> Article de <%= post.user.pseudo %></h3>
               <p> Ce contenu est privé, seuls les utilisateurs ayant écrit dans le thème sont authorisés à lire l'article</p>
@@ -40,20 +37,21 @@
       <% else %>
           <!-- user can update the post if the post exists and theadline is not past -->
         <% if user_signed_in? && Post.exists?(theme_id: @theme.id, user_id: current_user.id) && policy(@post).update?  %>
-          <div class="row">
-            <h3><%= @post.content %></h3>
+
+          <h5><%= @post.content %></h5><br><br>
+
+          <div>
+            <%= link_to "Poursuivre votre article", edit_theme_post_path(@theme, @post), class: "btn btn-primary" %>
+            <%= link_to "Supprimer mon article", theme_post_path(@theme, @post), method: :delete, data: { confirm: "Etes vous certain de vouloir supprimer votre article? ATTENTION: Cette action est irréversible" }, class: "btn btn-danger" %>
+            <h6><%= "Il vous reste #{@number_of_days} jours pour finaliser votre texte" %></h6>
           </div>
-          <p><%= "Il vous reste #{@number_of_days} jours pour finaliser votre texte" %></p>
-          <%= link_to "Poursuivre votre article", edit_theme_post_path(@theme, @post), class: "btn btn-primary" %>
-          <%= link_to "Supprimer mon article", theme_post_path(@theme, @post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
         <% else %>
         <!-- if post doesn't exist, user can write a post -->
-         <p><%= "Il vous reste #{@number_of_days} jours pour proposer un texte sur ce theme" %></p>
+         <h6><%= "Il vous reste #{@number_of_days} jours pour proposer un texte sur ce theme" %></h6>
          <%= link_to "Ecrire un article", new_theme_post_path([@theme, @post]), class: "btn btn-primary" %>
         <% end %>
       <% end %>
     </div>
   </div>
 </div>
-
 
