@@ -6,11 +6,7 @@ a:hover {
  text-decoration: none;
 }
 
-.theme__details {
-  background-color: white;
-  margin-top: 50px;
-  padding: 30px;
-  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+.transition__effect {
   transition: all 0.3s ease;
   transition: $transition;
   &:hover {
@@ -18,10 +14,21 @@ a:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);
   }
+}
 
-  h1 {
+.theme__details {
+  background-color: white;
+  margin-top: 50px;
+  padding: 30px;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+
+  .theme__title {
     font-family: "rubik", sans-serif;
     font-size: 25px;
+  }
+
+  .post__content {
+    line-height: 30px;
   }
 
   h2 {
@@ -71,18 +78,3 @@ a:hover {
   }
 }
 
-
-.filter__theme {
-  display: flex;
-}
-
-.filter__theme p{
-  margin-right: 30px;
-  margin-top: 20px;
-  font-size: 16px;
-}
-
-.filter__theme a{
- color: black;
- font-weight: 450;
-}
