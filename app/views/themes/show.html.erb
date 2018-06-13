@@ -2,20 +2,23 @@
   <div class="row theme__details">
     <div class=" col-xs-12 col-sm-12 col-md-12 ">
       <h1><%= "#{@theme.name}" %></h1>
+      <div>
+        <% if policy(@theme).edit? %>
+          <%= link_to(edit_theme_path(@theme), class: "btn btn--secondary") do %>
+            <%= fa_icon "edit" %>Mettre à jour
+          <% end %>
+        <% end %>
+
+        <% if policy(@theme).destroy?%>
+          <%= link_to(theme_path(@theme), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
+            <%= fa_icon "remove" %>Supprimer
+          <% end %>
+        <% end %>
+        <br><br>
+      </div>
 
       <% if @theme.photo.present? %>
         <%= cl_image_tag @theme.photo, height: 150, width: 200, crop: :fill %>
-      <% end %>
-      <% if policy(@theme).edit? %>
-        <%= link_to(edit_theme_path(@theme), class: "btn btn--secondary") do %>
-          <%= fa_icon "edit" %>Mettre à jour
-        <% end %>
-      <% end %>
-
-      <% if policy(@theme).destroy?%>
-        <%= link_to(theme_path(@theme), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
-          <%= fa_icon "remove" %>Supprimer
-        <% end %>
       <% end %>
 
       <h2><%= "Thème proposé par #{@theme.user.pseudo}"%></h2>
@@ -48,7 +51,7 @@
         <% else %>
         <!-- if post doesn't exist, user can write a post -->
          <h6><%= "Il vous reste #{@number_of_days} jours pour proposer un texte sur ce theme" %></h6>
-         <%= link_to "Ecrire un article", new_theme_post_path([@theme, @post]), class: "btn btn-primary" %>
+         <%= link_to "Ecrire un article", new_theme_post_path(@theme, @post), class: "btn btn-primary" %>
         <% end %>
       <% end %>
     </div>
