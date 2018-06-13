@@ -9,11 +9,11 @@
       </p>
 
       <p>
-        <%= f.input :deadline, label: "Deadline de votre thème", order: [:day, :month, :year], placeholder: "précisez la date limite de votre challenge" %>
+        <%= f.input :deadline, label: "Deadline", order: [:day, :month, :year], placeholder: "précisez la date limite de votre challenge" %>
       </p>
 
       <p>
-        <%= f.input :category_id, input_html: {class:'select2'}, placeholder: "séléctionez votre catégorie", collection: @categories %>
+        <%= f.input :category_id, input_html: {class:'select2'}, placeholder: "séléctionez votre catégorie", label: "Catégorie", collection: @categories %>
       </p>
 
       <p>
@@ -24,7 +24,7 @@
       </p>
 
       <p>
-        <%= f.button :submit %>
+        <%= f.button :submit, "Publier le thème", class: "btn btn-success" %>
       </p>
     <% end %>
 

@@ -58,15 +58,11 @@ a:hover {
   background: white;
   padding-left: 7px;
   transition: $transition;
+  position: relative;
   &:hover {
     color: $dark;
     transform: translateY(-5px);
     box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);
-
-    // .theme__card__filter {
-    //   transition: all 0.2s;
-    //   opacity: 0.5;
-    // }
   }
   h1 {
     font-size: 18px;
@@ -78,3 +74,9 @@ a:hover {
   }
 }
 
+
+.theme__contributors{
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
