@@ -6,7 +6,7 @@
       <span>
         <%= cl_image_tag user_avatar, crop: :thumb, gravity: :face, width: 30, height: 30, class: "avatar__user__card" %>
         <%= theme.user.pseudo %>
-        <h1><strong><%= "#{theme.name}"%></strong></h1>
+        <h1><strong><%= truncate(theme.name, length: 65) %></strong></h1>
       </span>
   <!-- user hasn't loaded a picture for his avatar yet-->
     <% else %>
