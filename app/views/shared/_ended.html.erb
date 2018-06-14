@@ -5,14 +5,18 @@
       <% if theme.photo.present? %>
         <div class=" theme__card">
           <%= render 'shared/theme-card', theme: theme %>
-          <p>Date de publication: <%= theme.deadline.strftime('%d/%m/%Y') %></p>
           <%= cl_image_tag theme.photo, height: 140, width: 370, crop: :fill %>
+          <div class="theme__publication">
+            <p>Date de publication: <%= theme.deadline.strftime('%d/%m/%Y') %></p>
+          </div>
         </div>
 
       <% else %>
         <div class=" theme__card">
           <%= render 'shared/theme-card', theme: theme %>
-          <p>Date de publication: <%= theme.deadline.strftime('%d/%m/%Y') %></p>
+          <div class="theme__publication">
+            <p>Date de publication: <%= theme.deadline.strftime('%d/%m/%Y') %></p>
+          </div>
         </div>
       <% end %>
     </div>

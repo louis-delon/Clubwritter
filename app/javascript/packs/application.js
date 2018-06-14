@@ -21,4 +21,8 @@ loadDynamicBannerText();
 import '../components/select2.js';
 import '../components/tab.js';
 
+// console.log("je suis dsnas le application.js");
 
+// function coucou() {
+//   console.log("je suis dna sla fonction coucou");
+// }

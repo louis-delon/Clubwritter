@@ -5,13 +5,13 @@
       <div>
         <% if policy(@theme).edit? %>
           <%= link_to(edit_theme_path(@theme), class: "btn btn--secondary") do %>
-            <%= fa_icon "edit" %>Mettre à jour
+            <%= icon('fas', 'edit') %>Mettre à jour
           <% end %>
         <% end %>
 
         <% if policy(@theme).destroy?%>
           <%= link_to(theme_path(@theme), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
-            <%= fa_icon "remove" %>Supprimer
+            <%= icon('fas', 'trash-alt') %>Supprimer
           <% end %>
         <% end %>
         <br><br>
@@ -31,12 +31,13 @@
           <div>
             <% if policy(post).show? %>
               <div>
-                <div><%= fa_icon "unlock" %> Article de <%= post.user.pseudo %></div>
+                <div><%= icon('fas', 'unlock-alt') %> Article de <%= post.user.pseudo %></div>
                 <div><%= truncate(post.content, length: 52) %></div>
                 <div><%= link_to "lire l'article", theme_post_path(@theme, post) %></div><br>
               </div>
             <% else %>
-              <%= fa_icon "lock" %> Article de <%= post.user.pseudo %>
+              <%= icon('fas', 'lock') %> Article de <%= post.user.pseudo %>
+
               <p> Ce contenu est privé, seuls les utilisateurs ayant écrit dans le thème sont authorisés à lire l'article</p><br>
             <% end %>
           </div>
