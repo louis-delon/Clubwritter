@@ -60,6 +60,14 @@ a:hover {
   }
 }
 
+.theme__ongoing {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: $red;
+}
+
+
 .theme__card {
   height: 300px;
   width: 375px;

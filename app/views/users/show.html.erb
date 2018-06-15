@@ -19,6 +19,8 @@
           </span>
         <% else %>
           <h1>Profil de <%= @user.pseudo.capitalize %></h1>
+          <%= render 'shared/avatar_picture' %>
+          <p>Inscrit depuis le <%= @user.created_at.strftime('%d/%m/%Y') %>
         <% end %>
 
         <% if policy(@user).update? %>
@@ -33,7 +35,12 @@
           </span>
         <% else %>
           <% if @user.posts.any? %>
-            <h2><%= "Articles de #{@user.pseudo.capitalize}" %></h2>
+            <h2>
+              <%= link_to user_posts_path(@user), class: "btn btn-success" do  %>
+                <%= "Articles de #{@user.pseudo.capitalize}" %>
+              <% end %>
+            </h2>
+
           <% else %>
             <h2><%= "#{@user.pseudo.capitalize} n'a pas encore écrit d'article" %></h2>
           <% end %>

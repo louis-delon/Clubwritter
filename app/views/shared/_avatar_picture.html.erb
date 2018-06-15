@@ -1,8 +1,8 @@
 <!-- user has loaded a picture for his avatar -->
 
-<% if current_user.avatar.present? %>
+<% if @user.avatar.present? %>
   <div>
-    <% user_avatar = current_user.avatar %>
+    <% user_avatar = @user.avatar %>
     <%= cl_image_tag user_avatar, crop: :thumb, gravity: :face, width: 100, height: 100, style: "border-radius: 50%;" %>
   </div>
 <!-- user hasn't loaded a picture for his avatar yet-->

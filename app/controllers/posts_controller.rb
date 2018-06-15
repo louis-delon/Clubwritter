@@ -2,11 +2,11 @@ class PostsController < ApplicationController
 
   before_action :set_theme, only: [:new, :create, :show, :edit, :update, :destroy]
   before_action :set_post, only: [:edit, :update, :destroy, :show]
+  before_action :set_user, only: [:index]
   skip_before_action :authenticate_user!, only: [:show]
 
   def index
     @posts = policy_scope(Post)
-    @user = current_user
   end
 
   def show
@@ -54,6 +54,10 @@ class PostsController < ApplicationController
 
   def set_theme
     @theme = Theme.find(params[:theme_id])
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 
   def set_post
