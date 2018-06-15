@@ -2,44 +2,35 @@
 <section >
   <div class="container">
     <div class="row user__infos">
-      <div class= "col-xs-12 col-sm-12 col-lg-12">
+      <div class= "col-xs-12 col-sm-12 col-lg-12 user__profile__card">
+
         <% if policy(@user).update? %>
-          <div class="user__profile__card">
-           <span>Mon profil (<%= @user.pseudo.capitalize %>)</span><br>
-           <span>Inscrit depuis le <%= @user.created_at.strftime('%d/%m/%Y')  %> </span><br>
-            <span><%= render 'shared/avatar_picture' %></span>
+          <div >
+           <h1>Mon profil</h1><br>
+            <%= render 'shared/avatar_picture' %>
+            <p><%= @user.pseudo.capitalize %></p>
+            <p>Inscrit depuis le <%= @user.created_at.strftime('%d/%m/%Y') %></p><br>
           </div>
-          <div>
+          <span>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
               Mettre à jour mon profil
             </button>
-          </div>
+          </span>
         <% else %>
           <h1>Profil de <%= @user.pseudo.capitalize %></h1>
         <% end %>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- <section id="user__info">
-  <div class="container">
 
-  </div>
-</section> -->
-
-<section>
-  <div class="container">
-    <div class="row post__title">
-      <div class=" col-xs-12 col sm 12 col lg 12">
         <% if policy(@user).update? %>
           <!-- current user has already wrotten some posts -->
-          <% if @user.posts.any? %>
-            <h2><%= link_to "Mes articles", user_posts_path(@user) %></h2>
-          <% else %>
-          <!-- current user hasn't wrotten some posts yet -->
-            <h2><%= "Vous n'avez pas encore rédigé d'article" %></h2>
-          <% end %>
+          <span>
+            <% if @user.posts.any? %>
+              <%= link_to "Mes articles", user_posts_path(@user), class: "btn btn-success" %>
+            <% else %>
+            <!-- current user hasn't wrotten some posts yet -->
+              <h2><%= "Vous n'avez pas encore rédigé d'article" %></h2>
+            <% end %>
+          </span>
         <% else %>
           <% if @user.posts.any? %>
             <h2><%= "Articles de #{@user.pseudo.capitalize}" %></h2>
@@ -51,7 +42,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

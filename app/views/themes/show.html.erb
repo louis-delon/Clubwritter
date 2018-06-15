@@ -21,8 +21,27 @@
         <%= cl_image_tag @theme.photo, height: 150, width: 200, crop: :fill %>
       <% end %>
 
-      <h2><%= "Thème proposé par #{@theme.user.pseudo}"%></h2>
-      <p><%= @theme.category.name %></p><br><br>
+      <h2><%= "Thème proposé par:" %></h2>
+      <h3>
+        <%= link_to user_path(@theme.user) do %>
+          <% if @theme.user.avatar.present? %>
+            <span>
+              <% user_avatar = @theme.user.avatar %>
+              <%= cl_image_tag user_avatar, crop: :thumb, gravity: :face, width: 30, height: 30, style: "border-radius: 50%;" %>
+            </span>
+          <!-- user hasn't loaded a picture for his avatar yet-->
+          <% else %>
+
+            <span>
+              <% user_avatar = "default-avatar.png" %>
+              <%= image_tag user_avatar, crop: :thumb, gravity: :face, width: 30, height: 30 %>
+            </span>
+          <% end %>
+          <%= @theme.user.pseudo  %>
+        <% end %>
+
+      </h3>
+      <p class="theme__category"><%= @theme.category.name %></p><br><br>
       <!-- user can see all the posts for other users if deadline is past, unless a post has been requested as private. In this case, only users who's wrote a post in the theme can see the post -->
       <% if @theme.deadline.past? && policy(@theme).show? %>
         <%= "Theme terminé depuis le #{@theme.deadline.strftime('%d/%m/%Y')}" %><br><br>

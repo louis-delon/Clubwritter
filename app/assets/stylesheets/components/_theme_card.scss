@@ -21,12 +21,23 @@ a:hover {
   margin-top: 50px;
   padding: 30px;
   box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  h3 {
+    font-family: "rubik", sans-serif;
+    font-size: 14px;
+  }
 
   .theme__title {
     font-family: "rubik", sans-serif;
     font-size: 25px;
+    width: 980px;
   }
 
+  .theme__category {
+    position: absolute;
+    top: 19px;
+    right: 10px;
+  }
 
   .post__content {
     line-height: 30px;

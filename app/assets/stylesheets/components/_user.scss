@@ -4,11 +4,25 @@
 }
 
 .user__infos {
-  margin-top: 50px;
+  margin: 50px;
+  padding-bottom: 30px;
   background-color: #fff;
   text-align: center;
+  border:1px solid #cccecc;
 }
 
 .user__profile__card {
+  font-family: "rubik", sans-serif;
+  display: inline-block;
+  border-radius: 1%;
+  padding: 7px;
+  background-color: white;
+  color: #6d6b6b;
+  h1 {
+    font-size: 22px;
 
+  }
+  p {
+    font-size: 16px;
+  }
 }
