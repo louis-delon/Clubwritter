@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  before_action :set_comment
+  before_action :set_post
   before_action :set_theme
 
   def index
@@ -13,20 +13,21 @@ class CommentsController < ApplicationController
   end
 
   def edit
-
+    @comment = Comment.find(:id)
+    authorize @comment
   end
 
   def update
-
+    authorize @comment
   end
 
   def destroy
-
+    authorize @comment
   end
 
 private
 
-  def set_comment
+  def set_post
     @post = Post.find(params[:post_id])
   end
 
