@@ -1,11 +1,25 @@
 
 <section class="container">
 
-  <h1><%= "Article de #{@post.user.pseudo}" %></h1>
-  <p><%= @post.content %></p>
-
   <% if policy(@post).update? %>
+    <h1><%= "Mon article" %></h1>
+    <p><%= @post.content %></p>
     <%= link_to "Mettre à jour", edit_theme_post_path(@post) %>
+    <% @post.comments.each do |comment| %>
+      <%= comment.message %>
+    <% end %>
+  <% else %>
+    <h1><%= "Article de #{@post.user.pseudo}" %></h1>
+    <p><%= @post.content %></p>
+
+    <% if @post.comments.blank? %>
+      <%= "Soyez le premier à laisser un commentaire!" %>
+    <% else %>
+      <% @post.comments.each do |comment| %>
+        <%= comment.message %>
+      <% end %>
+    <% end %>
+    <%= render 'comments/comment-form' %>
   <% end %>
 
 </section>

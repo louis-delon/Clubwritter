@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :themes do
     resources :posts, only: [:new, :create, :show, :edit, :destroy, :update] do
-      resources :comments, only: [:index, :create]
+      resources :comments, only: [ :create]
     end
     collection do
       get 'ended'

@@ -3,13 +3,16 @@ class CommentsController < ApplicationController
   before_action :set_post
   before_action :set_theme
 
-  def index
-    @comments = policy_scope(Comment)
-  end
-
   def create
-    @comment = Comment.new(post_id: @post.id)
+    @comment = Comment.new(comment_params)
+    @post.theme = @theme
+    @comment.post = @post
     authorize @comment
+    if @comment.save
+      redirect_to theme_post_path(@theme, @post)
+    else
+      render 'posts/show'
+    end
   end
 
   def edit
@@ -33,6 +36,10 @@ private
 
   def set_theme
     @theme = Theme.find(params[:theme_id])
+  end
+
+  def comment_params
+    params.require(:comment).permit(:message)
   end
 
 end

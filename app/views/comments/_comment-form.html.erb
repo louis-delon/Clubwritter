@@ -1,0 +1,4 @@
+<%= simple_form_for([@theme, @post, @comment]) do |f| %>
+  <%= f.input :message, label: "Laissez un commentaire" %>
+  <%= f.button :submit %>
+<% end %>

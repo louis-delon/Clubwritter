@@ -1,11 +1,5 @@
 <div class="container">
 
   <h1>Commencez à écrire !</h1>
-  <p>
-    <%= simple_form_for [@theme, @post] do |f| %>
-      <%= f.input :content, as: :text, :input_html => {rows: 20} %>
-      <%= f.input :private, as: :boolean, checked_value: true, unchecked_value: false, inline_label: 'Je souhaite que ce contenu reste privé (seuls les contributeurs du thème pourront lire votre article)' %>
-      <%= f.button :submit, "Créer l'article" %>
-    <% end %>
-  </p>
+  <p><%= render "post-form" %></p>
 </div>
