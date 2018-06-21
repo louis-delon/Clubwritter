@@ -9,9 +9,15 @@ class CommentsController < ApplicationController
     @comment.post = @post
     authorize @comment
     if @comment.save
-      redirect_to theme_post_path(@theme, @post)
+      respond_to do |format|
+        format.html { redirect_to theme_post_path(@theme, @post) }
+        format.js { }
+      end
     else
-      render 'posts/show'
+      respond_to do |format|
+        format.html { render 'posts/show' }
+        format.js { }
+      end
     end
   end
 

@@ -1,4 +1,6 @@
-<%= simple_form_for([@theme, @post, @comment]) do |f| %>
-  <%= f.input :message, label: "Laissez un commentaire" %>
+<!-- remote true indicate that form will be sent via an ajax request -->
+<%= simple_form_for([@theme, @post, @comment], remote: true) do |f| %>
+  <%= f.input :message, label: "Laissez un commentaire à #{@post.user.pseudo}" %>
   <%= f.button :submit %>
 <% end %>
+

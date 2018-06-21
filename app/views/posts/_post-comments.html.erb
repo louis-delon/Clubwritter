@@ -1,0 +1,5 @@
+ <div id="comments">
+  <% @post.comments.each do |comment| %>
+    <p><%= comment.message %></p><br>
+  <% end %>
+</div>
