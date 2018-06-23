@@ -1,7 +1,18 @@
-$('#comments').append( '<p><%= @comment.message %></p><br>');
-console.log('je suis dans le crezte.js')
 
-//var commentForm = document.getElementById('comments');
-//console.log("commentForm", commentForm)
+<% if @comment.errors.any? %>
+  $('#new_comment').html( "<p><%= j render 'comments/comment-form', theme: @theme, post: @post, comment: @comment %></p><br>");
+<% else %>
+  //create a paragraph for the new review, but hide it
+  var new_comment = $( '<p><%= @comment.message %></p><br>').hide();
+  // add it to the dom, but it's still hidden
+  $('#comments').append( new_comment);
+  // show the nbew review with an animation
+  new_comment.slideDown();
+  // remove the text from the content atrea
+  $('#comment_message').val('');
+<% end %>
 
-//commentForm.insertAdjacentHTML('beforeend', "<p><%= j @comment.message %></p><br>");
+// var commentForm = document.getElementById('comments');
+// console.log("commentForm", commentForm)
+// commentForm.insertAdjacentHTML('beforeend', "<p><%= j @comment.message %></p><br>");
+
