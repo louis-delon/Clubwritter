@@ -1,15 +1,19 @@
 
 <% if @comment.errors.any? %>
-  $('#new_comment').html( "<p><%= j render 'comments/comment-form', theme: @theme, post: @post, comment: @comment %></p><br>");
+  $('#new_comment').html( "<%= j render 'comment-form', theme: @theme, post: @post, comment: @comment %>");
 <% else %>
+
   //create a paragraph for the new review, but hide it
-  var new_comment = $( '<p><%= @comment.message %></p><br>').hide();
+  var new_comment = $( "<%= j render 'comment-message', comment: @comment %>").hide();
   // add it to the dom, but it's still hidden
   $('#comments').append( new_comment);
   // show the nbew review with an animation
   new_comment.slideDown();
   // remove the text from the content atrea
   $('#comment_message').val('');
+
+  $('#comment__title').html('')
+
 <% end %>
 
 // var commentForm = document.getElementById('comments');

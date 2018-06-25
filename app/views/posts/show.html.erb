@@ -14,7 +14,9 @@
         <h1><%= "Article de #{@post.user.pseudo}" %></h1>
         <p><%= @post.content %></p>
         <% if @post.comments.blank? %>
-          <%= "Soyez le premier à laisser un commentaire!" %>
+          <div id="comment__title">
+            <%= "Soyez le premier à laisser un commentaire!" %>
+          </div>
           <%= render 'post-comments' %>
           <%= render 'comments/comment-form' %>
         <% else %>

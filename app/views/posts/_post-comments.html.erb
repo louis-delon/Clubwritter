@@ -1,5 +1,5 @@
  <div id="comments">
   <% @post.comments.each do |comment| %>
-    <p><%= comment.message %></p><br>
+    <%= render 'comments/comment-message', comment: comment %>
   <% end %>
 </div>

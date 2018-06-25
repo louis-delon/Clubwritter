@@ -1,0 +1,6 @@
+<div>
+  <% user_avatar = comment.user.avatar || "default-avatar.png" %>
+  <%= cl_image_tag user_avatar, crop: :thumb, gravity: :face, width: 50, height: 50, style: "border-radius: 50%;" %>
+  <%= comment.user.pseudo %>
+  <p><%= comment.message %></p><br>
+</div>
