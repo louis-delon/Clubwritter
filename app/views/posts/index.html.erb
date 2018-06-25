@@ -26,7 +26,6 @@
                 <p>Date de publication: <%= post.theme.deadline.strftime('%d/%m/%Y') %></p>
               </div>
             </div>
-
           <% else %>
             <div class=" theme__card">
               <%= render 'shared/post-card', post: post %>
