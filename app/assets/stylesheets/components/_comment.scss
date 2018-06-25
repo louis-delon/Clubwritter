@@ -4,13 +4,23 @@
   font-family: "rubik", sans-serif;
 }
 
-
 .comment__card__content {
   background-color: white;
-
-
+  margin: 15px;
+  padding: 10px;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+  line-height: 2em;
 }
 
 .comment__card__avatar {
   background-color: white;
+}
+
+.comment__card__pseudo {
+  font-weight: bold;
+}
+
+.comment__card__message {
+  color: gray;
 }
