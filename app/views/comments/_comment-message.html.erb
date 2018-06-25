@@ -1,6 +1,12 @@
-<div>
-  <% user_avatar = comment.user.avatar || "default-avatar.png" %>
-  <%= cl_image_tag user_avatar, crop: :thumb, gravity: :face, width: 50, height: 50, style: "border-radius: 50%;" %>
-  <%= comment.user.pseudo %>
-  <p><%= comment.message %></p><br>
+<div class="comment__card">
+  <div class="comment__card__avatar">
+    <% user_avatar = comment.user.avatar || "default-avatar.png" %>
+    <%= cl_image_tag user_avatar, crop: :thumb, gravity: :face, width: 40, height: 40, style: "border-radius: 50%;" %>
+  </div>
+  <div class="comment__card__content">
+    <%= comment.user.pseudo %> -
+    <%= comment.created_at.strftime("%d/%m/%y") %>
+    <%= comment.message %><br>
+  </div>
+
 </div>

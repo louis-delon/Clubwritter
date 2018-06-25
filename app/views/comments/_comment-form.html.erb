@@ -1,6 +1,6 @@
 <!-- remote true indicate that form will be sent via an ajax request -->
 <%= simple_form_for([@theme, @post, @comment], remote: true, authenticity_token: true) do |f| %>
-  <%= f.input :message, label: "Laissez un commentaire à #{@post.user.pseudo}" %>
-  <%= f.button :submit %>
+  <%= f.input :message, label: "" %>
+  <%= f.button :submit, "Valider", class: "btn btn-danger" %>
 <% end %>
 

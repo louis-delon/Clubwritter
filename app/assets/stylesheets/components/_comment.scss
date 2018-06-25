@@ -1,4 +1,16 @@
 .comment__card {
-  background-color: white;
+  display: flex;
+  align-items: center;
   font-family: "rubik", sans-serif;
+}
+
+
+.comment__card__content {
+  background-color: white;
+
+
+}
+
+.comment__card__avatar {
+  background-color: white;
 }
