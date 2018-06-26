@@ -1,23 +1,21 @@
-<section >
+<div >
   <%= link_to theme_path(theme) do %>
     <p>Thème proposé par</p>
     <% if theme.user.avatar.present? %>
       <% user_avatar = theme.user.avatar  %>
       <%= cl_image_tag user_avatar, crop: :thumb, gravity: :face, width: 30, height: 30, class: "avatar__user__card" %>
-      <%= theme.user.pseudo %>
-      <h1><strong><%= truncate(theme.name, length: 65) %></strong></h1>
+      <%= render 'themes/theme-title', theme: theme %>
   <!-- user hasn't loaded a picture for his avatar yet-->
     <% else %>
       <% user_avatar = "default-avatar.png" %>
       <%= image_tag user_avatar, crop: :thumb, gravity: :face, width: 30, height: 30, class: "avatar__user__card" %>
-      <%= theme.user.pseudo %>
-      <h1><strong><%= truncate(theme.name, length: 65) %></strong></h1>
+      <%= render 'themes/theme-title', theme: theme %>
     <% end %>
     <div class="theme__contributors">
       <%= "#{theme.posts.length}" %>
       <%= icon('fas', 'pencil-alt') %>
     </div>
   <% end %>
-</section>
+</div>
 
 

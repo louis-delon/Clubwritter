@@ -5,20 +5,13 @@
       <% if theme.photo.present? %>
         <div class=" theme__card">
           <%= render 'shared/theme-card', theme: theme %>
-          <%= render 'theme-image', theme: theme %>
-
-          <div class="theme__publication">
-            <p>Date limite de soumission: <%= theme.deadline.strftime('%d/%m/%Y') %></p>
-          </div>
-          <div class="theme__ongoing">
-            <i class="far fa-clock"></i>
-            <%= theme.deadline.mjd-DateTime.now.mjd %> j
-          </div>
+          <%= render 'themes/theme-image', theme: theme %>
+          <%= render 'themes/theme-deadline', theme: theme %>
         </div>
       <% else %>
         <div class=" theme__card">
           <%= render 'shared/theme-card', theme: theme %>
-          <%= render 'theme-deadline', theme: theme %>
+          <%= render 'themes/theme-deadline', theme: theme %>
         </div>
       <% end %>
     </div>

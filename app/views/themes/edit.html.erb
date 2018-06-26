@@ -6,7 +6,7 @@
       <%= f.input :deadline, label: "Deadline de votre thème", order: [:day, :month, :year], placeholder: "précisez la date limite de votre challenge" %>
       <%= f.input :category_id, label: "Sélectionnez votre catégorie", collection: @categories %>
       <p>
-        <%= cl_image_tag(@theme.photo) if @theme.photo? %>
+        <%= cl_image_tag(@theme.photo, height: 100, Width: "auto") if @theme.photo? %>
         <%= f.file_field :photo %>
         <%= f.hidden_field :photo_cache %>
       </p>

@@ -1,10 +1,12 @@
 .theme__box {
   margin-bottom: 10px;
+  display: flex;
 }
 
 .theme__card {
+  flex-grow: 1;
   height: 300px;
-  width: 370px;
+  // width: 370px;
   margin-right: 3px;
   display: block;
   box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
@@ -93,6 +95,10 @@ a:hover {
   color: $red;
 }
 
+.theme__image {
+  max-width: 290px;
+  max-height: 140px;
+}
 
 .theme__contributors{
   position: absolute;
