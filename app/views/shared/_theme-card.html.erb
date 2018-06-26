@@ -1,20 +1,8 @@
 <div >
   <%= link_to theme_path(theme) do %>
-    <p>Thème proposé par</p>
-    <% if theme.user.avatar.present? %>
-      <% user_avatar = theme.user.avatar  %>
-      <%= cl_image_tag user_avatar, crop: :thumb, gravity: :face, width: 30, height: 30, class: "avatar__user__card" %>
-      <%= render 'themes/theme-title', theme: theme %>
-  <!-- user hasn't loaded a picture for his avatar yet-->
-    <% else %>
-      <% user_avatar = "default-avatar.png" %>
-      <%= image_tag user_avatar, crop: :thumb, gravity: :face, width: 30, height: 30, class: "avatar__user__card" %>
-      <%= render 'themes/theme-title', theme: theme %>
-    <% end %>
-    <div class="theme__contributors">
-      <%= "#{theme.posts.length}" %>
-      <%= icon('fas', 'pencil-alt') %>
-    </div>
+    <%= render 'themes/theme-owner', theme: theme %>
+    <%= render 'themes/theme-title', theme: theme %>
+    <%= render 'themes/theme-contributors', theme: theme %>
   <% end %>
 </div>
 

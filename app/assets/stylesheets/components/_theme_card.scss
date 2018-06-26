@@ -12,7 +12,7 @@
   box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   background: white;
-  padding-left: 5px;
+  padding: 15px;
   transition: $transition;
   position: relative;
   &:hover {
@@ -90,24 +90,36 @@ a:hover {
 
 .theme__ongoing {
   position: absolute;
-  top: 15px;
+  top: 38px;
   right: 15px;
   color: $red;
 }
 
 .theme__image {
   max-width: 290px;
-  max-height: 140px;
+  max-height: 130px;
 }
 
 .theme__contributors{
   position: absolute;
   right: 15px;
-  bottom: 20px;
+  bottom: 9px;
 }
 
 .theme__publication {
   position: absolute;
-  bottom: 10px;
+  bottom: -3px;
   left: 15px;
+}
+
+.theme__owner {
+  border-bottom: 1px solid #ddd;
+  display: inline-block;
+  width: 100%;
+  height: 54px;
+  line-height: 1;
+}
+
+.theme__card__title {
+  font-weight: 500;
 }
