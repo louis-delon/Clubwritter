@@ -17,9 +17,11 @@
 
 import 'bootstrap';
 import { loadDynamicBannerText } from '../components/banner';
-loadDynamicBannerText();
 import '../components/select2.js';
 import '../components/tab.js';
+
+const typedText = document.getElementById('banner-typed-text');
+if (typedText) {loadDynamicBannerText()};
 
 // console.log("je suis dsnas le application.js");
 
