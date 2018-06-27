@@ -4,9 +4,24 @@
       <%= link_to "En cours", themes_path, class: "nav-link active" %>
     </li>
     <li class="nav-item">
-      <%= link_to "Publiés", ended_themes_path, class: "nav-link active" %>
+      <%= link_to "Publiés", ended_themes_path, class: "nav-link " %>
     </li>
   </ul>
 </div>
+
+<%
+=begin%>
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline">
+    <%= link_to themes_path do %>
+    <button class="btn btn-outline-success" type="button">En cours</button>
+    <% end %>
+    <%= link_to ended_themes_path do %>
+    <button class="btn btn-outline-success" type="button">publiés</button>
+    <% end %>
+  </form>
+</nav>
+<%
+=end%>
 
 

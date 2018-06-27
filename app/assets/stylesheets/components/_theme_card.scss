@@ -95,11 +95,6 @@ a:hover {
   color: $red;
 }
 
-.theme__image {
-  max-width: 290px;
-  max-height: 130px;
-}
-
 .theme__contributors{
   position: absolute;
   right: 15px;
@@ -122,4 +117,8 @@ a:hover {
 
 .theme__card__title {
   font-weight: 500;
+}
+
+.theme__card__with__photo {
+  position: relative;
 }
