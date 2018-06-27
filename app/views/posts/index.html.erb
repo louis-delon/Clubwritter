@@ -21,7 +21,7 @@
           <% if post.theme.photo.present? %>
             <div class=" theme__card">
               <%= render 'shared/post-card', post: post %>
-              <%= cl_image_tag post.theme.photo, height: 140, width: 370, crop: :fill %>
+              <%= render 'themes/theme-image', theme: post.theme %>
               <div class="theme__publication">
                 <p>Date de publication: <%= post.theme.deadline.strftime('%d/%m/%Y') %></p>
               </div>

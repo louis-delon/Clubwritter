@@ -7,9 +7,6 @@
           <%= link_to(edit_theme_path(@theme), class: "btn btn--secondary") do %>
             <%= icon('fas', 'edit') %>Mettre à jour
           <% end %>
-        <% end %>
-
-        <% if policy(@theme).destroy?%>
           <%= link_to(theme_path(@theme), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
             <%= icon('fas', 'trash-alt') %>Supprimer
           <% end %>
@@ -41,7 +38,7 @@
         <% end %>
 
       </h3>
-      <p class="theme__category"><%= @theme.category.name %></p><br><br>
+      <p class="theme__category"><%= @theme.category.name %></p>
       <!-- user can see all the posts for other users if deadline is past, unless a post has been requested as private. In this case, only users who's wrote a post in the theme can see the post -->
       <% if @theme.deadline.past? && policy(@theme).show? %>
         <%= "Theme terminé depuis le #{@theme.deadline.strftime('%d/%m/%Y')}" %><br><br>
