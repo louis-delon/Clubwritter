@@ -4,7 +4,6 @@ class CommentsController < ApplicationController
   before_action :set_theme
 
   def create
-
     @comment = Comment.new(comment_params)
     @user = current_user
     @post.theme = @theme
