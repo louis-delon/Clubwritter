@@ -3,18 +3,6 @@
   <h1>Poursuivre mon article</h1>
   <br>
   <p>
-    <%= simple_form_for [@theme, @post] do |f| %>
-      <%= f.error_notification %>
-
-      <div>
-        <%= f.input :content, as: :text, :input_html => {rows: 20}, label: "Contenu" %>
-      </div>
-      <div>
-        <%= f.input :private, as: :boolean, inline_label: 'Je souhaite que ce contenu reste privé' %>
-      </div>
-      <div>
-        <%= f.button :submit, "Mettre à jour" %>
-      </div>
-    <% end %>
+    <%= render 'post-form' %>
   </p>
 </div>

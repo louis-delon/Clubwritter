@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
 
   include Pundit
 
-    # Pundit: white-list approach.
-    after_action :verify_authorized, except: :index, unless: :skip_pundit?
-    after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
-
+  # Pundit: white-list approach.
+  after_action :verify_authorized, except: :index, unless: :skip_pundit?
+  # after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
+  # skip_after_action :verify_authorized, if: :ckeditor_controller?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   def user_not_authorized
@@ -31,5 +31,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:pseudo, :avatar])
   end
 
+  # def ckeditor_controller?
+  #   self.class.to_s.starts_with?("Ckeditor::")
+  # end
 
 end
