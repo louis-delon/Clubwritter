@@ -45,10 +45,12 @@
 
         <% @posts.each do |post| %>
           <div>
+            <% content = post.content %>
+            <% body_content = truncate(content,:length=>60, :omission => "" , :escape => false) %>
             <% if policy(post).show? %>
               <div>
                 <div><%= icon('fas', 'unlock-alt') %> Article de <%= post.user.pseudo %></div>
-                <div><%= truncate(post.content, length: 52) %></div>
+                <div><%= body_content.html_safe + "..."%></div>
                 <div><%= link_to "lire l'article", theme_post_path(@theme, post) %></div><br>
               </div>
             <% else %>

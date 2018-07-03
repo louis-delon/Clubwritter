@@ -3,7 +3,7 @@
   <% if policy(@post).update? %>
     <div class="post__card">
       <h1><%= "Mon article" %></h1>
-      <p><%= @post.content %></p>
+      <p><%= @post.content.html_safe %></p>
       <%= link_to "Mettre à jour", edit_theme_post_path(@theme, @post) %>
     </div>
     <%= render 'comments/comment-card' %>
@@ -11,7 +11,7 @@
   <% else %>
     <div class="post__card">
       <h1><%= "Article de #{@post.user.pseudo}" %></h1>
-      <p><%= @post.content %></p>
+      <p><%= @post.content.html_safe %></p>
     </div>
     <% if @post.comments.blank? %>
       <h2 class='comment__title'><%= "Soyez le premier à laisser un commentaire!" %></h2>
